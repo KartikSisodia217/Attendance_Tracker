@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Tracker // Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-glow"></div>
+    
+    <header class="header">
+        <div class="title">Attendance<span>Tracker</span> </div>
+        <button class="addBtn glass" onclick="openModal()">+ New Subject</button>
+    </header>
+
+    <main class="container">
+        <div id="mainContent">
+            <section class="section-label">Weekly Schedule</section>
+            <div class="week-grid glass" id="weekGrid"></div>
+
+            <section class="section-label">Subject Summaries</section>
+            <div id="subjectGrid" class="subject-grid"></div>
+        </div>
+
+        <div id="emptyState" class="emptyState glass">
+            <h2>No subjects yet</h2>
+            <p>Define your subjects and their timings to start tracking.</p>
+            <button class="addBtn" onclick="openModal()">+ Create Subject</button>
+        </div>
+    </main>
+
+    <div id="modal" class="modal">
+        <div class="modal-content glass">
+            <h3 id="modalTitle">Subject Setup </h3>
+            <form id="subjectForm">
+                <input type="hidden" id="editOriginalName">
+                <div class="input-group">
+                    <label>Subject Name</label>
+                    <input type="text" id="subjName" placeholder="e.g., CO102" required>
+                </div>
+
+                <div id="scheduleBuilder"></div>
+                
+                <button type="button" class="btn-cancel" onclick="addTimingRow()" style="margin-top: 12px; color: #4f7cff; font-size: 13px;">+ Add another slot</button>
+
+                <div class="modal-actions" style="margin-top: 30px;">
+                    <button type="button" onclick="closeModal()" class="btn-cancel">Cancel</button>
+                    <button type="submit" class="addBtn">Save Subject</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
