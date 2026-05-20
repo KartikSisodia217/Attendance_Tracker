@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -107,47 +108,38 @@
     .btn:hover {
       background-color: var(--accent-hover);
     }
-    
+
     .btn-secondary {
       background-color: var(--bg);
       border: 1px solid var(--border);
     }
+
     .btn-secondary:hover {
       background-color: var(--border);
     }
 
-    .subject-list, .stats-list {
+    .stats-list {
       display: flex;
       flex-direction: column;
       gap: 10px;
-    }
-
-    .subject-card {
-      background-color: var(--bg);
-      border: 1px solid var(--border);
-      padding: 12px;
-      border-radius: 8px;
-      position: relative;
     }
 
     .subject-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 5px;
-    }
-
-    .subject-name {
-      font-weight: 600;
-      font-size: 14px;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
     }
 
     .subject-code {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--accent);
       background: rgba(124, 92, 255, 0.1);
       padding: 2px 6px;
       border-radius: 4px;
+      font-weight: 500;
     }
 
     .card-actions {
@@ -164,9 +156,18 @@
       opacity: 0.7;
       transition: opacity 0.2s;
     }
-    .icon-btn:hover { opacity: 1; }
-    .edit-btn { color: var(--text-muted); }
-    .delete-btn { color: var(--absent); }
+
+    .icon-btn:hover {
+      opacity: 1;
+    }
+
+    .edit-btn {
+      color: var(--text-muted);
+    }
+
+    .delete-btn {
+      color: var(--absent);
+    }
 
     .stat-card {
       background-color: var(--bg);
@@ -175,11 +176,13 @@
       border-radius: 8px;
       font-size: 13px;
     }
+
     .stat-row {
       display: flex;
       justify-content: space-between;
       margin-top: 4px;
     }
+
     .stat-perc {
       font-size: 18px;
       font-weight: 700;
@@ -202,7 +205,7 @@
       gap: 10px;
       align-items: center;
     }
-    
+
     .nav-controls h2 {
       font-size: 18px;
       font-weight: 600;
@@ -218,7 +221,10 @@
       border-radius: 6px;
       cursor: pointer;
     }
-    .nav-btn:hover { background: var(--border); }
+
+    .nav-btn:hover {
+      background: var(--border);
+    }
 
     .calendar-container {
       flex: 1;
@@ -228,6 +234,7 @@
       overflow-y: auto;
       display: flex;
       flex-direction: column;
+      scroll-behavior: smooth;
     }
 
     .calendar-header {
@@ -241,12 +248,17 @@
     }
 
     .day-col-header {
-      padding: 12px;
+      padding: 12px 6px;
       text-align: center;
       border-left: 1px solid var(--border);
       font-weight: 500;
       font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
     }
+
     .day-col-header span {
       display: block;
       font-size: 11px;
@@ -254,10 +266,73 @@
       margin-top: 4px;
     }
 
+    /* TODAY HIGHLIGHT STYLES */
+    .today-header {
+      background: rgba(124, 92, 255, 0.1);
+      border-top: 3px solid var(--accent);
+      box-shadow: inset 0 10px 20px -10px rgba(124, 92, 255, 0.2);
+    }
+
+    .today-cell {
+      background-color: rgba(124, 92, 255, 0.03);
+    }
+
+    .today-badge {
+      background: var(--accent);
+      color: #000;
+      font-size: 9px;
+      padding: 2px 6px;
+      border-radius: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      box-shadow: 0 0 10px rgba(124, 92, 255, 0.5);
+    }
+
+    /* Mark Day Buttons */
+    .mark-day-container {
+      display: flex;
+      gap: 4px;
+      margin-top: 8px;
+    }
+
+    .mark-day-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      font-size: 10px;
+      padding: 3px 6px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex: 1;
+      white-space: nowrap;
+    }
+
+    .mark-p-btn {
+      color: var(--present);
+    }
+
+    .mark-p-btn:hover {
+      background: var(--present);
+      color: #000;
+      border-color: var(--present);
+    }
+
+    .mark-a-btn {
+      color: var(--absent);
+    }
+
+    .mark-a-btn:hover {
+      background: var(--absent);
+      color: #fff;
+      border-color: var(--absent);
+    }
+
     .calendar-body {
       display: grid;
       grid-template-columns: 60px repeat(5, 1fr);
-      grid-template-rows: repeat(10, 100px); /* 10 hours: 8 to 17 */
+      grid-template-rows: repeat(10, 100px);
+      /* 10 hours: 8 to 17 */
       position: relative;
     }
 
@@ -285,10 +360,10 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       z-index: 5;
       overflow: hidden;
-      position: relative; /* FIX: Added relative positioning here! */
+      position: relative;
     }
 
     .lecture-info {
@@ -296,6 +371,7 @@
       display: flex;
       flex-direction: column;
     }
+
     .lecture-info strong {
       font-size: 13px;
     }
@@ -330,11 +406,13 @@
       color: #000;
       border-color: var(--present);
     }
+
     .att-btn.active-a {
       background: var(--absent);
       color: #fff;
       border-color: var(--absent);
     }
+
     .att-btn.active-c {
       background: var(--cancelled);
       color: #fff;
@@ -346,8 +424,11 @@
        ====================== */
     .modal-overlay {
       position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -356,6 +437,7 @@
       pointer-events: none;
       transition: opacity 0.2s;
     }
+
     .modal-overlay.active {
       opacity: 1;
       pointer-events: auto;
@@ -379,13 +461,16 @@
     .form-group {
       margin-bottom: 15px;
     }
+
     .form-group label {
       display: block;
       font-size: 13px;
       margin-bottom: 6px;
       color: var(--text-muted);
     }
-    .form-group input, .form-group select {
+
+    .form-group input,
+    .form-group select {
       width: 100%;
       padding: 10px;
       border-radius: 6px;
@@ -394,7 +479,7 @@
       color: var(--text);
       font-family: var(--font);
     }
-    
+
     .modal-actions {
       display: flex;
       gap: 10px;
@@ -408,6 +493,7 @@
       flex-wrap: wrap;
       margin-top: 6px;
     }
+
     .color-swatch {
       width: 24px;
       height: 24px;
@@ -416,23 +502,22 @@
       border: 2px solid transparent;
       transition: transform 0.2s;
     }
+
     .color-swatch.selected {
       border-color: #fff;
       transform: scale(1.1);
     }
   </style>
 </head>
+
 <body>
 
   <div class="app-container">
-    
+
     <aside class="sidebar">
       <div class="brand">Attendance Tracker</div>
-      
+
       <button class="btn" onclick="openAddSubject()">+ Add Subject</button>
-      
-      <div class="section-title">Subjects</div>
-      <div class="subject-list" id="subjectList"></div>
 
       <div class="section-title">Attendance Overview</div>
       <div class="stats-list" id="statsList"></div>
@@ -583,7 +668,7 @@
       currentWeekMonday: null
     };
 
-    let editingSubjectId = null; 
+    let editingSubjectId = null;
 
     const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
     const COLORS = ['#7c5cff', '#3498db', '#2ecc71', '#f1c40f', '#e67e22', '#e74c3c', '#e84393', '#9b59b6', '#1abc9c', '#00cec9'];
@@ -593,11 +678,11 @@
       const sl = localStorage.getItem('slots');
       const ec = localStorage.getItem('extraClasses');
       const a = localStorage.getItem('attendance');
-      
-      if(s) state.subjects = JSON.parse(s);
-      if(sl) state.slots = JSON.parse(sl);
-      if(ec) state.extraClasses = JSON.parse(ec);
-      if(a) state.attendance = JSON.parse(a);
+
+      if (s) state.subjects = JSON.parse(s);
+      if (sl) state.slots = JSON.parse(sl);
+      if (ec) state.extraClasses = JSON.parse(ec);
+      if (a) state.attendance = JSON.parse(a);
     }
 
     function saveData() {
@@ -610,9 +695,9 @@
     function getMonday(d) {
       const date = new Date(d);
       const day = date.getDay();
-      const diff = date.getDate() - day + (day === 0 ? -6 : 1); 
+      const diff = date.getDate() - day + (day === 0 ? -6 : 1);
       date.setDate(diff);
-      date.setHours(0,0,0,0);
+      date.setHours(0, 0, 0, 0);
       return date;
     }
 
@@ -632,36 +717,15 @@
     }
 
     function render() {
-      renderSubjects();
       renderStats();
       renderCalendar();
       updateSelectDropdowns();
     }
 
-    function renderSubjects() {
-      const list = document.getElementById('subjectList');
-      list.innerHTML = '';
-      state.subjects.forEach(sub => {
-        const themeColor = sub.color || 'var(--border)';
-        list.innerHTML += `
-          <div class="subject-card" style="border-color: ${themeColor}">
-            <div class="subject-header">
-              <span class="subject-name">${sub.name}</span>
-              <div class="card-actions">
-                <button class="icon-btn edit-btn" onclick="openEditSubject('${sub.id}')">🖉</button>
-                <button class="icon-btn delete-btn" onclick="deleteSubject('${sub.id}')">✖</button>
-              </div>
-            </div>
-            <span class="subject-code" style="color: ${sub.color || 'var(--accent)'}; background: ${sub.color ? sub.color+'1A' : 'rgba(124, 92, 255, 0.1)'}">${sub.code}</span>
-          </div>
-        `;
-      });
-    }
-
     function renderStats() {
       const list = document.getElementById('statsList');
       list.innerHTML = '';
-      
+
       state.subjects.forEach(sub => {
         let present = 0;
         let total = 0;
@@ -678,14 +742,46 @@
         });
 
         const perc = total === 0 ? 0 : ((present / total) * 100).toFixed(1);
-        
+
+        let targetText = '';
+        if (total === 0) {
+          targetText = `<span style="color: var(--text-muted);">No classes yet</span>`;
+        } else if (perc >= 75) {
+          const skippable = Math.floor((4 * present - 3 * total) / 3);
+
+          if (skippable > 0) {
+            targetText = `<span style="color: var(--present); font-weight: 600;">✔ Safe (Can skip ${skippable} hrs)</span>`;
+          } else {
+            targetText = `<span style="color: var(--present); font-weight: 600;">✔ Safe (Cannot skip any)</span>`;
+          }
+        } else {
+          const required = (3 * total) - (4 * present);
+          targetText = `<span style="color: var(--cancelled); font-weight: 600;">⚠️ Need ${required} lecture hrs</span>`;
+        }
+
         list.innerHTML += `
-          <div class="stat-card">
-            <div style="font-weight:600; color:var(--text)">${sub.name}</div>
+          <div class="stat-card" style="border-left: 4px solid ${sub.color || 'var(--accent)'}">
+            
+            <div class="subject-header" style="align-items: flex-start;">
+              <div style="font-weight:600; color:var(--text); flex: 1; padding-right: 12px; word-break: break-word;">
+                ${sub.name}
+              </div>
+              <div class="card-actions">
+                <span class="subject-code" style="color: ${sub.color || 'var(--accent)'}; background: ${sub.color ? sub.color + '1A' : 'rgba(124, 92, 255, 0.1)'}; margin-left: 0; margin-right: 4px;">${sub.code}</span>
+                <button class="icon-btn edit-btn" onclick="openEditSubject('${sub.id}')" title="Edit Subject">🖉</button>
+                <button class="icon-btn delete-btn" onclick="deleteSubject('${sub.id}')" title="Delete Subject">✖</button>
+              </div>
+            </div>
+
             <div class="stat-row"><span>Present:</span> <span>${present}</span></div>
             <div class="stat-row"><span>Total:</span> <span>${total}</span></div>
             <div class="stat-row"><span>Cancelled:</span> <span>${cancelled}</span></div>
-            <div class="stat-perc" style="color: ${sub.color || 'var(--accent)'}">${perc}%</div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 8px;">
+              <div class="stat-perc" style="color: ${sub.color || 'var(--accent)'}; margin-top: 0;">${perc}%</div>
+              <div style="font-size: 11px;">${targetText}</div>
+            </div>
+
           </div>
         `;
       });
@@ -694,20 +790,33 @@
     function renderCalendar() {
       const header = document.getElementById('calendarHeader');
       const body = document.getElementById('calendarBody');
-      
+      const actualTodayDateStr = formatDate(new Date());
+
       const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
       document.getElementById('currentWeekLabel').innerText = `${monthNames[state.currentWeekMonday.getMonth()]} ${state.currentWeekMonday.getFullYear()}`;
 
-      header.innerHTML = `<div class="day-col-header">Time</div>`;
+      header.innerHTML = `<div class="day-col-header" style="justify-content: center;">Time</div>`;
       let currentDates = [];
-      for(let i=0; i<5; i++) {
+      for (let i = 0; i < 5; i++) {
         let d = new Date(state.currentWeekMonday);
         d.setDate(d.getDate() + i);
-        currentDates.push(formatDate(d));
+        const dateStr = formatDate(d);
+        currentDates.push(dateStr);
+
+        // Check if this specific column is TODAY
+        const isToday = (dateStr === actualTodayDateStr);
+        const todayHeaderClass = isToday ? 'today-header' : '';
+        const todayBadgeHTML = isToday ? `<div class="today-badge">TODAY</div>` : `<div class="today-badge" style="visibility: hidden;">TODAY</div>`;
+
         header.innerHTML += `
-          <div class="day-col-header">
+          <div class="day-col-header ${todayHeaderClass}">
+            ${todayBadgeHTML}
             ${DAYS[i]}
-            <span>${d.getDate()} ${monthNames[d.getMonth()].substr(0,3)}</span>
+            <span>${d.getDate()} ${monthNames[d.getMonth()].substr(0, 3)}</span>
+            <div class="mark-day-container">
+              <button class="mark-day-btn mark-p-btn" onclick="markDayBulk('${dateStr}', 'P')" title="Mark all classes Present">Present All Day</button>
+              <button class="mark-day-btn mark-a-btn" onclick="markDayBulk('${dateStr}', 'A')" title="Mark all classes Absent">Absent All Day</button>
+            </div>
           </div>
         `;
       }
@@ -716,7 +825,10 @@
       for (let hour = 8; hour <= 17; hour++) {
         body.innerHTML += `<div class="time-slot-label" style="grid-row: ${hour - 7}">${hour}:00</div>`;
         for (let day = 1; day <= 5; day++) {
-          body.innerHTML += `<div class="grid-cell" style="grid-column: ${day+1}; grid-row: ${hour-7}"></div>`;
+          const dateStr = currentDates[day - 1];
+          const isToday = (dateStr === actualTodayDateStr);
+          const cellClass = isToday ? 'grid-cell today-cell' : 'grid-cell';
+          body.innerHTML += `<div class="${cellClass}" style="grid-column: ${day + 1}; grid-row: ${hour - 7}"></div>`;
         }
       }
 
@@ -733,7 +845,7 @@
 
       state.extraClasses.forEach(ec => {
         const ecDate = new Date(ec.date);
-        ecDate.setHours(0,0,0,0);
+        ecDate.setHours(0, 0, 0, 0);
         const diffDays = Math.round((ecDate - state.currentWeekMonday) / (1000 * 60 * 60 * 24));
         if (diffDays >= 0 && diffDays <= 4) {
           lecturesToRender.push({
@@ -745,7 +857,7 @@
 
       lecturesToRender.forEach(lec => {
         const sub = getSubjectById(lec.subjectId);
-        if(!sub) return;
+        if (!sub) return;
 
         const attId = `att_${lec.subjectId}_${lec.date}_${lec.startTime}`;
         let attRecord = state.attendance.find(a => a.id === attId);
@@ -770,7 +882,7 @@
         card.style.gridColumn = lec.dayIndex + 2;
         card.style.gridRow = `${lec.startTime - 7} / span ${lec.lectureHours}`;
         card.style.borderColor = sub.color || 'var(--accent)';
-        
+
         card.innerHTML = `
           <div class="lecture-info">
             <strong style="color: ${sub.color || 'var(--accent)'}">${sub.code}</strong>
@@ -788,6 +900,17 @@
       });
     }
 
+    function scrollToCurrentTime() {
+      const container = document.querySelector('.calendar-container');
+      const hour = new Date().getHours();
+
+      // If it's between 8 AM and 5 PM, scroll to that hour minus a little padding
+      if (hour >= 8 && hour <= 17) {
+        const targetScroll = (hour - 8) * 100 - 40;
+        container.scrollTo({ top: Math.max(0, targetScroll), behavior: 'smooth' });
+      }
+    }
+
     function updateSelectDropdowns() {
       const slotSub = document.getElementById('slotSubject');
       const extraSub = document.getElementById('extraSubject');
@@ -799,19 +922,19 @@
     function initColorPicker(selectedColor = COLORS[0]) {
       const container = document.getElementById('colorPicker');
       const input = document.getElementById('subColor');
-      container.innerHTML = COLORS.map((c) => 
+      container.innerHTML = COLORS.map((c) =>
         `<div class="color-swatch ${c === selectedColor ? 'selected' : ''}" style="background:${c}" onclick="selectColor(this, '${c}')"></div>`
       ).join('');
       input.value = selectedColor;
     }
 
-    window.selectColor = function(el, color) {
+    window.selectColor = function (el, color) {
       document.querySelectorAll('.color-swatch').forEach(sw => sw.classList.remove('selected'));
       el.classList.add('selected');
       document.getElementById('subColor').value = color;
     };
 
-    window.openAddSubject = function() {
+    window.openAddSubject = function () {
       editingSubjectId = null;
       document.getElementById('subjectModalTitle').innerText = 'Add Subject';
       document.getElementById('subjectForm').reset();
@@ -819,7 +942,7 @@
       openModal('subjectModal');
     };
 
-    window.openEditSubject = function(id) {
+    window.openEditSubject = function (id) {
       editingSubjectId = id;
       const sub = getSubjectById(id);
       document.getElementById('subjectModalTitle').innerText = 'Edit Subject';
@@ -834,9 +957,9 @@
       const name = document.getElementById('subName').value.trim();
       const code = document.getElementById('subCode').value.trim();
       const color = document.getElementById('subColor').value;
-      
+
       if (editingSubjectId) {
-        if(state.subjects.find(s => s.code === code && s.id !== editingSubjectId)) {
+        if (state.subjects.find(s => s.code === code && s.id !== editingSubjectId)) {
           alert('Subject code must be unique!');
           return;
         }
@@ -845,7 +968,7 @@
         sub.code = code;
         sub.color = color;
       } else {
-        if(state.subjects.find(s => s.code === code)) {
+        if (state.subjects.find(s => s.code === code)) {
           alert('Subject code must be unique!');
           return;
         }
@@ -857,8 +980,8 @@
       closeModals();
     });
 
-    window.deleteSubject = function(id) {
-      if(!confirm('Delete subject? This will remove all associated slots, extra classes, and attendance.')) return;
+    window.deleteSubject = function (id) {
+      if (!confirm('Delete subject? This will remove all associated slots, extra classes, and attendance.')) return;
       state.subjects = state.subjects.filter(s => s.id !== id);
       state.slots = state.slots.filter(s => s.subjectId !== id);
       state.extraClasses = state.extraClasses.filter(e => e.subjectId !== id);
@@ -895,15 +1018,15 @@
       closeModals();
     });
 
-    window.deleteLecture = function(type, id) {
-      if(!confirm('Delete this class? All associated attendance records will be removed.')) return;
+    window.deleteLecture = function (type, id) {
+      if (!confirm('Delete this class? All associated attendance records will be removed.')) return;
 
-      if(type === 'slot') {
+      if (type === 'slot') {
         const slot = state.slots.find(s => s.id === id);
-        if(slot) {
+        if (slot) {
           state.attendance = state.attendance.filter(a => {
             if (a.subjectId === slot.subjectId && a.startTime === slot.startTime) {
-              const d = new Date(a.date + 'T00:00:00'); 
+              const d = new Date(a.date + 'T00:00:00');
               const dayName = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][d.getDay()];
               if (dayName === slot.day) return false;
             }
@@ -913,10 +1036,10 @@
         state.slots = state.slots.filter(s => s.id !== id);
       }
 
-      if(type === 'extra') {
+      if (type === 'extra') {
         const extra = state.extraClasses.find(e => e.id === id);
-        if(extra) {
-          state.attendance = state.attendance.filter(a => 
+        if (extra) {
+          state.attendance = state.attendance.filter(a =>
             !(a.subjectId === extra.subjectId && a.date === extra.date && a.startTime === extra.startTime)
           );
         }
@@ -927,9 +1050,9 @@
       render();
     };
 
-    window.markAttBulk = function(attId, subjectId, date, startTime, totalHours, status) {
+    window.markAttBulk = function (attId, subjectId, date, startTime, totalHours, status) {
       let record = state.attendance.find(a => a.id === attId);
-      
+
       if (!record) {
         record = {
           id: attId,
@@ -951,21 +1074,71 @@
       render();
     };
 
-    window.changeWeek = function(offset) {
+    // Unified function to mark the entire day as P or A
+    window.markDayBulk = function (dateStr, status) {
+      const dayObj = new Date(dateStr + 'T00:00:00');
+      const dayName = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][dayObj.getDay()];
+
+      let lecturesOnDay = [];
+
+      // Find slots for this day of the week
+      state.slots.forEach(slot => {
+        if (slot.day === dayName) {
+          lecturesOnDay.push({ subjectId: slot.subjectId, startTime: slot.startTime, hours: slot.lectureHours });
+        }
+      });
+
+      // Find extra classes specifically on this date
+      state.extraClasses.forEach(ec => {
+        if (ec.date === dateStr) {
+          lecturesOnDay.push({ subjectId: ec.subjectId, startTime: ec.startTime, hours: ec.lectureHours });
+        }
+      });
+
+      if (lecturesOnDay.length === 0) {
+        alert("No classes scheduled for this day.");
+        return;
+      }
+
+      // Automatically fill or create records with the chosen status
+      lecturesOnDay.forEach(lec => {
+        const attId = `att_${lec.subjectId}_${dateStr}_${lec.startTime}`;
+        let record = state.attendance.find(a => a.id === attId);
+
+        if (!record) {
+          record = {
+            id: attId,
+            subjectId: lec.subjectId,
+            date: dateStr,
+            startTime: lec.startTime,
+            statuses: new Array(lec.hours).fill(status)
+          };
+          state.attendance.push(record);
+        } else {
+          record.statuses.fill(status);
+        }
+      });
+
+      saveData();
+      render();
+    };
+
+    window.changeWeek = function (offset) {
       state.currentWeekMonday.setDate(state.currentWeekMonday.getDate() + (offset * 7));
       render();
     };
 
-    window.jumpToCurrentWeek = function() {
+    window.jumpToCurrentWeek = function () {
       state.currentWeekMonday = getMonday(new Date());
       render();
+      setTimeout(scrollToCurrentTime, 100); // Wait for render to finish before scrolling
     };
 
-    window.openModal = function(id) {
+    window.openModal = function (id) {
       document.getElementById(id).classList.add('active');
     };
-    
-    window.closeModals = function() {
+
+    window.closeModals = function () {
       document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
     };
 
@@ -974,8 +1147,10 @@
       state.currentWeekMonday = getMonday(new Date());
       initColorPicker();
       render();
+      setTimeout(scrollToCurrentTime, 100); // Auto-scroll on initial load
     };
 
   </script>
 </body>
+
 </html>
