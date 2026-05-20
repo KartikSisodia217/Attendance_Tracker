@@ -36,6 +36,7 @@
       height: 100vh;
       display: flex;
       overflow: hidden;
+      zoom: 0.9; /* 90% Zoom applied here */
     }
 
     /* ======================
@@ -116,38 +117,52 @@
       background-color: var(--border);
     }
 
-    .subject-list, .stats-list {
+    .stats-list {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
 
-    .subject-card {
+    .stat-card {
       background-color: var(--bg);
       border: 1px solid var(--border);
-      padding: 12px;
+      padding: 14px;
       border-radius: 8px;
-      position: relative;
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
     }
 
     .subject-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 5px;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .subject-title-area {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
     .subject-name {
       font-weight: 600;
       font-size: 14px;
+      color: var(--text);
     }
 
     .subject-code {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--accent);
       background: rgba(124, 92, 255, 0.1);
       padding: 2px 6px;
       border-radius: 4px;
+      display: inline-block;
+      width: fit-content;
     }
 
     .card-actions {
@@ -161,30 +176,25 @@
       border: none;
       cursor: pointer;
       font-size: 14px;
+      color: var(--text-muted); /* New default color for gray icons */
       opacity: 0.7;
-      transition: opacity 0.2s;
+      transition: opacity 0.2s, color 0.2s; /* Add smooth transition for color */
     }
-    .icon-btn:hover { opacity: 1; }
-    .edit-btn { color: var(--text-muted); }
-    .delete-btn { color: var(--absent); }
+    .icon-btn:hover {
+      opacity: 1;
+    }
 
-    .stat-card {
-      background-color: var(--bg);
-      border: 1px solid var(--border);
-      padding: 12px;
-      border-radius: 8px;
-      font-size: 13px;
-    }
+    /* Remove specific color overrides, let generic one handle it */
+
     .stat-row {
       display: flex;
       justify-content: space-between;
-      margin-top: 4px;
     }
     .stat-perc {
       font-size: 18px;
       font-weight: 700;
       color: var(--accent);
-      margin-top: 8px;
+      margin-top: 4px;
     }
 
     /* ======================
@@ -288,7 +298,7 @@
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       z-index: 5;
       overflow: hidden;
-      position: relative; /* FIX: Added relative positioning here! */
+      position: relative;
     }
 
     .lecture-info {
@@ -431,9 +441,6 @@
       
       <button class="btn" onclick="openAddSubject()">+ Add Subject</button>
       
-      <div class="section-title">Subjects</div>
-      <div class="subject-list" id="subjectList"></div>
-
       <div class="section-title">Attendance Overview</div>
       <div class="stats-list" id="statsList"></div>
     </aside>
@@ -510,11 +517,11 @@
             <option value="10">10:00</option>
             <option value="11">11:00</option>
             <option value="12">12:00</option>
-            <option value="13">13:00</option>
-            <option value="14">14:00</option>
-            <option value="15">15:00</option>
-            <option value="16">16:00</option>
-            <option value="17">17:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
           </select>
         </div>
         <div class="form-group">
@@ -552,11 +559,11 @@
             <option value="10">10:00</option>
             <option value="11">11:00</option>
             <option value="12">12:00</option>
-            <option value="13">13:00</option>
-            <option value="14">14:00</option>
-            <option value="15">15:00</option>
-            <option value="16">16:00</option>
-            <option value="17">17:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
           </select>
         </div>
         <div class="form-group">
@@ -632,30 +639,9 @@
     }
 
     function render() {
-      renderSubjects();
       renderStats();
       renderCalendar();
       updateSelectDropdowns();
-    }
-
-    function renderSubjects() {
-      const list = document.getElementById('subjectList');
-      list.innerHTML = '';
-      state.subjects.forEach(sub => {
-        const themeColor = sub.color || 'var(--border)';
-        list.innerHTML += `
-          <div class="subject-card" style="border-color: ${themeColor}">
-            <div class="subject-header">
-              <span class="subject-name">${sub.name}</span>
-              <div class="card-actions">
-                <button class="icon-btn edit-btn" onclick="openEditSubject('${sub.id}')">🖉</button>
-                <button class="icon-btn delete-btn" onclick="deleteSubject('${sub.id}')">✖</button>
-              </div>
-            </div>
-            <span class="subject-code" style="color: ${sub.color || 'var(--accent)'}; background: ${sub.color ? sub.color+'1A' : 'rgba(124, 92, 255, 0.1)'}">${sub.code}</span>
-          </div>
-        `;
-      });
     }
 
     function renderStats() {
@@ -666,6 +652,7 @@
         let present = 0;
         let total = 0;
         let cancelled = 0;
+        const themeColor = sub.color || 'var(--border)';
 
         state.attendance.forEach(att => {
           if (att.subjectId === sub.id) {
@@ -680,8 +667,17 @@
         const perc = total === 0 ? 0 : ((present / total) * 100).toFixed(1);
         
         list.innerHTML += `
-          <div class="stat-card">
-            <div style="font-weight:600; color:var(--text)">${sub.name}</div>
+          <div class="stat-card" style="border-color: ${themeColor}">
+            <div class="subject-header">
+              <div class="subject-title-area">
+                <span class="subject-name">${sub.name}</span>
+                <span class="subject-code" style="color: ${sub.color || 'var(--accent)'}; background: ${sub.color ? sub.color+'1A' : 'rgba(124, 92, 255, 0.1)'}">${sub.code}</span>
+              </div>
+              <div class="card-actions">
+                <button class="icon-btn edit-btn" onclick="openEditSubject('${sub.id}')">✏️</button>
+                <button class="icon-btn delete-btn" onclick="deleteSubject('${sub.id}')">✖</button>
+              </div>
+            </div>
             <div class="stat-row"><span>Present:</span> <span>${present}</span></div>
             <div class="stat-row"><span>Total:</span> <span>${total}</span></div>
             <div class="stat-row"><span>Cancelled:</span> <span>${cancelled}</span></div>
