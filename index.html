@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Attendance Tracker</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ======================
-       CSS VARIABLES & THEME
-       ====================== */
     :root {
       --bg: #0f1117;
       --bg-sec: #1a1d26;
@@ -39,9 +35,6 @@
       overflow: hidden;
     }
 
-    /* ======================
-       LAYOUT
-       ====================== */
     .app-container {
       display: flex;
       width: 100%;
@@ -49,12 +42,12 @@
     }
 
     .sidebar {
-      width: 320px;
+      width: 280px;
       background-color: var(--bg-sec);
       border-right: 1px solid var(--border);
       display: flex;
       flex-direction: column;
-      padding: 20px;
+      padding: 15px;
       overflow-y: auto;
     }
 
@@ -62,17 +55,14 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      padding: 20px;
+      padding: 15px;
       overflow-y: auto;
     }
 
-    /* ======================
-       SIDEBAR & COMPONENTS
-       ====================== */
     .brand {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 700;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       color: var(--accent);
       display: flex;
       align-items: center;
@@ -80,23 +70,24 @@
     }
 
     .section-title {
-      font-size: 12px;
+      font-size: 11px;
       text-transform: uppercase;
       color: var(--text-muted);
       letter-spacing: 1px;
-      margin-bottom: 15px;
-      margin-top: 20px;
+      margin-bottom: 10px;
+      margin-top: 15px;
     }
 
     .btn {
       background-color: var(--accent);
       color: #fff;
       border: none;
-      padding: 10px 15px;
+      padding: 8px 12px;
       border-radius: 6px;
       cursor: pointer;
       font-family: var(--font);
       font-weight: 500;
+      font-size: 13px;
       transition: background 0.2s;
       width: 100%;
       display: flex;
@@ -121,30 +112,30 @@
     .stats-list {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
     .subject-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
-      padding-bottom: 8px;
+      margin-bottom: 8px;
+      padding-bottom: 6px;
       border-bottom: 1px solid var(--border);
     }
 
     .subject-code {
-      font-size: 11px;
+      font-size: 10px;
       color: var(--accent);
       background: rgba(124, 92, 255, 0.1);
-      padding: 2px 6px;
+      padding: 2px 4px;
       border-radius: 4px;
       font-weight: 500;
     }
 
     .card-actions {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       align-items: center;
     }
 
@@ -152,7 +143,7 @@
       background: none;
       border: none;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 13px;
       opacity: 0.7;
       transition: opacity 0.2s;
     }
@@ -172,9 +163,9 @@
     .stat-card {
       background-color: var(--bg);
       border: 1px solid var(--border);
-      padding: 12px;
+      padding: 10px;
       border-radius: 8px;
-      font-size: 13px;
+      font-size: 12px;
     }
 
     .stat-row {
@@ -184,32 +175,29 @@
     }
 
     .stat-perc {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 700;
       color: var(--accent);
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
-    /* ======================
-       MAIN AREA (CALENDAR)
-       ====================== */
     .toolbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     .nav-controls {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
     }
 
     .nav-controls h2 {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
-      min-width: 200px;
+      min-width: 160px;
       text-align: center;
     }
 
@@ -217,7 +205,8 @@
       background: var(--bg-sec);
       border: 1px solid var(--border);
       color: var(--text);
-      padding: 8px 12px;
+      padding: 6px 10px;
+      font-size: 12px;
       border-radius: 6px;
       cursor: pointer;
     }
@@ -239,7 +228,7 @@
 
     .calendar-header {
       display: grid;
-      grid-template-columns: 60px repeat(5, 1fr);
+      grid-template-columns: 50px repeat(5, 1fr);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
@@ -248,11 +237,11 @@
     }
 
     .day-col-header {
-      padding: 12px 6px;
+      padding: 8px 4px;
       text-align: center;
       border-left: 1px solid var(--border);
       font-weight: 500;
-      font-size: 14px;
+      font-size: 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -261,12 +250,11 @@
 
     .day-col-header span {
       display: block;
-      font-size: 11px;
+      font-size: 10px;
       color: var(--text-muted);
       margin-top: 4px;
     }
 
-    /* TODAY HIGHLIGHT STYLES */
     .today-header {
       background: rgba(124, 92, 255, 0.1);
       border-top: 3px solid var(--accent);
@@ -280,26 +268,27 @@
     .today-badge {
       background: var(--accent);
       color: #000;
-      font-size: 9px;
+      font-size: 8px;
       padding: 2px 6px;
       border-radius: 12px;
       font-weight: 700;
       letter-spacing: 1px;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       box-shadow: 0 0 10px rgba(124, 92, 255, 0.5);
     }
 
-    /* Mark Day Buttons */
     .mark-day-container {
       display: flex;
       gap: 4px;
-      margin-top: 8px;
+      margin-top: 6px;
+      width: 100%;
+      justify-content: center;
     }
 
     .mark-day-btn {
       background: var(--bg);
       border: 1px solid var(--border);
-      font-size: 10px;
+      font-size: 9px;
       padding: 3px 6px;
       border-radius: 4px;
       cursor: pointer;
@@ -330,9 +319,8 @@
 
     .calendar-body {
       display: grid;
-      grid-template-columns: 60px repeat(5, 1fr);
-      grid-template-rows: repeat(10, 100px);
-      /* 10 hours: 8 to 17 */
+      grid-template-columns: 50px repeat(5, 1fr);
+      grid-template-rows: repeat(10, 80px);
       position: relative;
     }
 
@@ -340,8 +328,8 @@
       grid-column: 1;
       border-bottom: 1px solid var(--border);
       text-align: right;
-      padding: 8px;
-      font-size: 11px;
+      padding: 6px;
+      font-size: 10px;
       color: var(--text-muted);
       border-right: 1px solid var(--border);
     }
@@ -355,11 +343,11 @@
       background: var(--bg);
       border: 1px solid var(--accent);
       border-radius: 6px;
-      margin: 4px;
-      padding: 8px;
+      margin: 3px;
+      padding: 6px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 4px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       z-index: 5;
       overflow: hidden;
@@ -367,25 +355,25 @@
     }
 
     .lecture-info {
-      font-size: 12px;
+      font-size: 11px;
       display: flex;
       flex-direction: column;
     }
 
     .lecture-info strong {
-      font-size: 13px;
+      font-size: 12px;
     }
 
     .attendance-controls {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
       margin-top: auto;
     }
 
     .attendance-row {
       display: flex;
-      gap: 4px;
+      gap: 3px;
     }
 
     .att-btn {
@@ -393,8 +381,8 @@
       background: var(--bg-sec);
       border: 1px solid var(--border);
       color: var(--text-muted);
-      font-size: 11px;
-      padding: 4px 0;
+      font-size: 10px;
+      padding: 3px 0;
       border-radius: 4px;
       cursor: pointer;
       font-weight: 600;
@@ -419,9 +407,6 @@
       border-color: var(--cancelled);
     }
 
-    /* ======================
-       MODALS
-       ====================== */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -446,25 +431,25 @@
     .modal-box {
       background: var(--bg-sec);
       border: 1px solid var(--border);
-      padding: 24px;
+      padding: 20px;
       border-radius: 12px;
-      width: 400px;
+      width: 360px;
       max-width: 90%;
     }
 
     .modal-title {
-      font-size: 18px;
-      margin-bottom: 20px;
+      font-size: 16px;
+      margin-bottom: 16px;
       font-weight: 600;
     }
 
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
 
     .form-group label {
       display: block;
-      font-size: 13px;
+      font-size: 12px;
       margin-bottom: 6px;
       color: var(--text-muted);
     }
@@ -472,31 +457,31 @@
     .form-group input,
     .form-group select {
       width: 100%;
-      padding: 10px;
+      padding: 8px;
       border-radius: 6px;
       border: 1px solid var(--border);
       background: var(--bg);
       color: var(--text);
       font-family: var(--font);
+      font-size: 12px;
     }
 
     .modal-actions {
       display: flex;
       gap: 10px;
-      margin-top: 20px;
+      margin-top: 16px;
     }
 
-    /* Color Picker Styles */
     .color-picker {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
       margin-top: 6px;
     }
 
     .color-swatch {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       cursor: pointer;
       border: 2px solid transparent;
@@ -517,69 +502,69 @@
     <aside class="sidebar">
       <div class="brand">Attendance Tracker</div>
 
-      <button class="btn" onclick="openAddSubject()">+ Add Subject</button>
+      <button class="btn" onclick="open_add_subject_modal()">+ Add Subject</button>
 
       <div class="section-title">Attendance Overview</div>
-      <div class="stats-list" id="statsList"></div>
+      <div class="stats-list" id="stats_list_container"></div>
     </aside>
 
     <main class="main-area">
       <div class="toolbar">
         <div class="nav-controls">
-          <button class="nav-btn" onclick="changeWeek(-1)">◀ Prev</button>
-          <button class="nav-btn" onclick="jumpToCurrentWeek()">Today</button>
-          <button class="nav-btn" onclick="changeWeek(1)">Next ▶</button>
-          <h2 id="currentWeekLabel">May 2026</h2>
+          <button class="nav-btn" onclick="navigate_calendar_weeks(-1)">◀ Prev</button>
+          <button class="nav-btn" onclick="navigate_to_current_week()">Today</button>
+          <button class="nav-btn" onclick="navigate_calendar_weeks(1)">Next ▶</button>
+          <h2 id="current_week_display_label">May 2026</h2>
         </div>
-        <div style="display: flex; gap: 10px;">
-          <button class="nav-btn" onclick="openModal('slotModal')">+ Add Weekly Slot</button>
-          <button class="nav-btn" onclick="openModal('extraClassModal')">+ Add Extra Class</button>
+        <div style="display: flex; gap: 8px;">
+          <button class="nav-btn" onclick="open_interface_modal('weekly_slot_modal')">+ Add Weekly Slot</button>
+          <button class="nav-btn" onclick="open_interface_modal('extra_class_modal')">+ Add Extra Class</button>
         </div>
       </div>
 
       <div class="calendar-container">
-        <div class="calendar-header" id="calendarHeader"></div>
-        <div class="calendar-body" id="calendarBody"></div>
+        <div class="calendar-header" id="calendar_header_container"></div>
+        <div class="calendar-body" id="calendar_body_container"></div>
       </div>
     </main>
   </div>
 
-  <div class="modal-overlay" id="subjectModal">
+  <div class="modal-overlay" id="subject_creation_modal">
     <div class="modal-box">
-      <div class="modal-title" id="subjectModalTitle">Add Subject</div>
-      <form id="subjectForm">
+      <div class="modal-title" id="subject_modal_title_text">Add Subject</div>
+      <form id="subject_input_form">
         <div class="form-group">
           <label>Subject Name</label>
-          <input type="text" id="subName" required placeholder="e.g. Mathematics">
+          <input type="text" id="subject_name_input" required placeholder="e.g. Mathematics">
         </div>
         <div class="form-group">
           <label>Subject Code</label>
-          <input type="text" id="subCode" required placeholder="e.g. MA101">
+          <input type="text" id="subject_code_input" required placeholder="e.g. MA101">
         </div>
         <div class="form-group">
           <label>Subject Color</label>
-          <div class="color-picker" id="colorPicker"></div>
-          <input type="hidden" id="subColor" required>
+          <div class="color-picker" id="color_selection_container"></div>
+          <input type="hidden" id="subject_color_input" required>
         </div>
         <div class="modal-actions">
-          <button type="button" class="btn btn-secondary" onclick="closeModals()">Cancel</button>
+          <button type="button" class="btn btn-secondary" onclick="close_all_interface_modals()">Cancel</button>
           <button type="submit" class="btn">Save</button>
         </div>
       </form>
     </div>
   </div>
 
-  <div class="modal-overlay" id="slotModal">
+  <div class="modal-overlay" id="weekly_slot_modal">
     <div class="modal-box">
       <div class="modal-title">Add Weekly Slot</div>
-      <form id="slotForm">
+      <form id="weekly_slot_form">
         <div class="form-group">
           <label>Subject</label>
-          <select id="slotSubject" required></select>
+          <select id="slot_subject_selection" required></select>
         </div>
         <div class="form-group">
           <label>Day</label>
-          <select id="slotDay" required>
+          <select id="slot_day_selection" required>
             <option value="Monday">Monday</option>
             <option value="Tuesday">Tuesday</option>
             <option value="Wednesday">Wednesday</option>
@@ -589,7 +574,7 @@
         </div>
         <div class="form-group">
           <label>Start Time (24h)</label>
-          <select id="slotStart" required>
+          <select id="slot_start_time_selection" required>
             <option value="8">08:00</option>
             <option value="9">09:00</option>
             <option value="10">10:00</option>
@@ -604,34 +589,34 @@
         </div>
         <div class="form-group">
           <label>Lecture Hours</label>
-          <select id="slotDuration" required>
+          <select id="slot_duration_selection" required>
             <option value="1">1 Hour</option>
             <option value="2">2 Hours</option>
           </select>
         </div>
         <div class="modal-actions">
-          <button type="button" class="btn btn-secondary" onclick="closeModals()">Cancel</button>
+          <button type="button" class="btn btn-secondary" onclick="close_all_interface_modals()">Cancel</button>
           <button type="submit" class="btn">Save</button>
         </div>
       </form>
     </div>
   </div>
 
-  <div class="modal-overlay" id="extraClassModal">
+  <div class="modal-overlay" id="extra_class_modal">
     <div class="modal-box">
       <div class="modal-title">Add Extra Class</div>
-      <form id="extraForm">
+      <form id="extra_class_input_form">
         <div class="form-group">
           <label>Subject</label>
-          <select id="extraSubject" required></select>
+          <select id="extra_subject_selection" required></select>
         </div>
         <div class="form-group">
           <label>Date</label>
-          <input type="date" id="extraDate" required>
+          <input type="date" id="extra_date_selection" required>
         </div>
         <div class="form-group">
           <label>Start Time (24h)</label>
-          <select id="extraStart" required>
+          <select id="extra_start_time_selection" required>
             <option value="8">08:00</option>
             <option value="9">09:00</option>
             <option value="10">10:00</option>
@@ -646,13 +631,13 @@
         </div>
         <div class="form-group">
           <label>Lecture Hours</label>
-          <select id="extraDuration" required>
+          <select id="extra_duration_selection" required>
             <option value="1">1 Hour</option>
             <option value="2">2 Hours</option>
           </select>
         </div>
         <div class="modal-actions">
-          <button type="button" class="btn btn-secondary" onclick="closeModals()">Cancel</button>
+          <button type="button" class="btn btn-secondary" onclick="close_all_interface_modals()">Cancel</button>
           <button type="submit" class="btn">Save</button>
         </div>
       </form>
@@ -660,126 +645,126 @@
   </div>
 
   <script>
-    const state = {
-      subjects: [],
-      slots: [],
-      extraClasses: [],
-      attendance: [],
-      currentWeekMonday: null
+    const application_state = {
+      enrolled_subjects: [],
+      weekly_schedule_slots: [],
+      additional_extra_classes: [],
+      attendance_records: [],
+      start_of_current_week: null
     };
 
-    let editingSubjectId = null;
+    let currently_editing_subject_identifier = null;
 
-    const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-    const COLORS = ['#7c5cff', '#3498db', '#2ecc71', '#f1c40f', '#e67e22', '#e74c3c', '#e84393', '#9b59b6', '#1abc9c', '#00cec9'];
+    const WEEK_DAYS_ARRAY = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+    const THEME_COLORS_ARRAY = ['#7c5cff', '#3498db', '#2ecc71', '#f1c40f', '#e67e22', '#e74c3c', '#e84393', '#9b59b6', '#1abc9c', '#00cec9'];
 
-    function loadData() {
-      const s = localStorage.getItem('subjects');
-      const sl = localStorage.getItem('slots');
-      const ec = localStorage.getItem('extraClasses');
-      const a = localStorage.getItem('attendance');
+    function load_saved_application_data() {
+      const saved_subjects_string = localStorage.getItem('enrolled_subjects_data');
+      const saved_slots_string = localStorage.getItem('weekly_schedule_slots_data');
+      const saved_extra_classes_string = localStorage.getItem('additional_extra_classes_data');
+      const saved_attendance_string = localStorage.getItem('attendance_records_data');
 
-      if (s) state.subjects = JSON.parse(s);
-      if (sl) state.slots = JSON.parse(sl);
-      if (ec) state.extraClasses = JSON.parse(ec);
-      if (a) state.attendance = JSON.parse(a);
+      if (saved_subjects_string) application_state.enrolled_subjects = JSON.parse(saved_subjects_string);
+      if (saved_slots_string) application_state.weekly_schedule_slots = JSON.parse(saved_slots_string);
+      if (saved_extra_classes_string) application_state.additional_extra_classes = JSON.parse(saved_extra_classes_string);
+      if (saved_attendance_string) application_state.attendance_records = JSON.parse(saved_attendance_string);
     }
 
-    function saveData() {
-      localStorage.setItem('subjects', JSON.stringify(state.subjects));
-      localStorage.setItem('slots', JSON.stringify(state.slots));
-      localStorage.setItem('extraClasses', JSON.stringify(state.extraClasses));
-      localStorage.setItem('attendance', JSON.stringify(state.attendance));
+    function save_current_application_data() {
+      localStorage.setItem('enrolled_subjects_data', JSON.stringify(application_state.enrolled_subjects));
+      localStorage.setItem('weekly_schedule_slots_data', JSON.stringify(application_state.weekly_schedule_slots));
+      localStorage.setItem('additional_extra_classes_data', JSON.stringify(application_state.additional_extra_classes));
+      localStorage.setItem('attendance_records_data', JSON.stringify(application_state.attendance_records));
     }
 
-    function getMonday(d) {
-      const date = new Date(d);
-      const day = date.getDay();
-      const diff = date.getDate() - day + (day === 0 ? -6 : 1);
-      date.setDate(diff);
-      date.setHours(0, 0, 0, 0);
-      return date;
+    function calculate_monday_of_target_week(target_date_object) {
+      const copied_date_object = new Date(target_date_object);
+      const day_of_week_index = copied_date_object.getDay();
+      const date_difference_value = copied_date_object.getDate() - day_of_week_index + (day_of_week_index === 0 ? -6 : 1);
+      copied_date_object.setDate(date_difference_value);
+      copied_date_object.setHours(0, 0, 0, 0);
+      return copied_date_object;
     }
 
-    function formatDate(dateObj) {
-      const y = dateObj.getFullYear();
-      const m = String(dateObj.getMonth() + 1).padStart(2, '0');
-      const d = String(dateObj.getDate()).padStart(2, '0');
-      return `${y}-${m}-${d}`;
+    function format_date_to_string_format(date_object_to_format) {
+      const year_numerical_value = date_object_to_format.getFullYear();
+      const month_numerical_value = String(date_object_to_format.getMonth() + 1).padStart(2, '0');
+      const day_numerical_value = String(date_object_to_format.getDate()).padStart(2, '0');
+      return `${year_numerical_value}-${month_numerical_value}-${day_numerical_value}`;
     }
 
-    function generateId(prefix) {
-      return `${prefix}_${Math.random().toString(36).substr(2, 9)}`;
+    function generate_unique_random_identifier(identifier_prefix_string) {
+      return `${identifier_prefix_string}_${Math.random().toString(36).substr(2, 9)}`;
     }
 
-    function getSubjectById(id) {
-      return state.subjects.find(s => s.id === id);
+    function retrieve_subject_object_by_identifier(target_subject_identifier) {
+      return application_state.enrolled_subjects.find(subject_item => subject_item.subject_identifier === target_subject_identifier);
     }
 
-    function render() {
-      renderStats();
-      renderCalendar();
-      updateSelectDropdowns();
+    function render_entire_application_interface() {
+      render_attendance_statistics_cards();
+      render_weekly_calendar_grid();
+      update_dropdown_selection_options();
     }
 
-    function renderStats() {
-      const list = document.getElementById('statsList');
-      list.innerHTML = '';
+    function render_attendance_statistics_cards() {
+      const statistics_list_container = document.getElementById('stats_list_container');
+      statistics_list_container.innerHTML = '';
 
-      state.subjects.forEach(sub => {
-        let present = 0;
-        let total = 0;
-        let cancelled = 0;
+      application_state.enrolled_subjects.forEach(current_subject_data => {
+        let total_present_hours_count = 0;
+        let total_scheduled_hours_count = 0;
+        let total_cancelled_hours_count = 0;
 
-        state.attendance.forEach(att => {
-          if (att.subjectId === sub.id) {
-            att.statuses.forEach(status => {
-              if (status === 'P') { present++; total++; }
-              else if (status === 'A') { total++; }
-              else if (status === 'C') { cancelled++; }
+        application_state.attendance_records.forEach(attendance_record_item => {
+          if (attendance_record_item.parent_subject_identifier === current_subject_data.subject_identifier) {
+            attendance_record_item.lecture_status_array.forEach(attendance_status_value => {
+              if (attendance_status_value === 'P') { total_present_hours_count++; total_scheduled_hours_count++; }
+              else if (attendance_status_value === 'A') { total_scheduled_hours_count++; }
+              else if (attendance_status_value === 'C') { total_cancelled_hours_count++; }
             });
           }
         });
 
-        const perc = total === 0 ? 0 : ((present / total) * 100).toFixed(1);
+        const calculated_attendance_percentage = total_scheduled_hours_count === 0 ? 0 : ((total_present_hours_count / total_scheduled_hours_count) * 100).toFixed(1);
 
-        let targetText = '';
-        if (total === 0) {
-          targetText = `<span style="color: var(--text-muted);">No classes yet</span>`;
-        } else if (perc >= 75) {
-          const skippable = Math.floor((4 * present - 3 * total) / 3);
+        let dynamic_target_text_output = '';
+        if (total_scheduled_hours_count === 0) {
+          dynamic_target_text_output = `<span style="color: var(--text-muted);">No classes yet</span>`;
+        } else if (calculated_attendance_percentage >= 75) {
+          const skippable_lecture_hours_count = Math.floor((4 * total_present_hours_count - 3 * total_scheduled_hours_count) / 3);
 
-          if (skippable > 0) {
-            targetText = `<span style="color: var(--present); font-weight: 600;">✔ Safe (Can skip ${skippable} hrs)</span>`;
+          if (skippable_lecture_hours_count > 0) {
+            dynamic_target_text_output = `<span style="color: var(--present); font-weight: 600;">✔ Safe (Can skip ${skippable_lecture_hours_count} hrs)</span>`;
           } else {
-            targetText = `<span style="color: var(--present); font-weight: 600;">✔ Safe (Cannot skip any)</span>`;
+            dynamic_target_text_output = `<span style="color: var(--present); font-weight: 600;">✔ Safe (Cannot skip any)</span>`;
           }
         } else {
-          const required = (3 * total) - (4 * present);
-          targetText = `<span style="color: var(--cancelled); font-weight: 600;">⚠️ Need ${required} lecture hrs</span>`;
+          const required_lecture_hours_count = (3 * total_scheduled_hours_count) - (4 * total_present_hours_count);
+          dynamic_target_text_output = `<span style="color: var(--cancelled); font-weight: 600;">⚠️ Need ${required_lecture_hours_count} lecture hrs</span>`;
         }
 
-        list.innerHTML += `
-          <div class="stat-card" style="border-left: 4px solid ${sub.color || 'var(--accent)'}">
+        statistics_list_container.innerHTML += `
+          <div class="stat-card" style="border-left: 4px solid ${current_subject_data.subject_color_hex || 'var(--accent)'}">
             
             <div class="subject-header" style="align-items: flex-start;">
               <div style="font-weight:600; color:var(--text); flex: 1; padding-right: 12px; word-break: break-word;">
-                ${sub.name}
+                ${current_subject_data.subject_name_text}
               </div>
               <div class="card-actions">
-                <span class="subject-code" style="color: ${sub.color || 'var(--accent)'}; background: ${sub.color ? sub.color + '1A' : 'rgba(124, 92, 255, 0.1)'}; margin-left: 0; margin-right: 4px;">${sub.code}</span>
-                <button class="icon-btn edit-btn" onclick="openEditSubject('${sub.id}')" title="Edit Subject">🖉</button>
-                <button class="icon-btn delete-btn" onclick="deleteSubject('${sub.id}')" title="Delete Subject">✖</button>
+                <span class="subject-code" style="color: ${current_subject_data.subject_color_hex || 'var(--accent)'}; background: ${current_subject_data.subject_color_hex ? current_subject_data.subject_color_hex + '1A' : 'rgba(124, 92, 255, 0.1)'}; margin-left: 0; margin-right: 4px;">${current_subject_data.subject_code_text}</span>
+                <button class="icon-btn edit-btn" onclick="open_edit_subject_modal('${current_subject_data.subject_identifier}')" title="Edit Subject">🖉</button>
+                <button class="icon-btn delete-btn" onclick="delete_selected_subject_data('${current_subject_data.subject_identifier}')" title="Delete Subject">✖</button>
               </div>
             </div>
 
-            <div class="stat-row"><span>Present:</span> <span>${present}</span></div>
-            <div class="stat-row"><span>Total:</span> <span>${total}</span></div>
-            <div class="stat-row"><span>Cancelled:</span> <span>${cancelled}</span></div>
+            <div class="stat-row"><span>Present:</span> <span>${total_present_hours_count}</span></div>
+            <div class="stat-row"><span>Total:</span> <span>${total_scheduled_hours_count}</span></div>
+            <div class="stat-row"><span>Cancelled:</span> <span>${total_cancelled_hours_count}</span></div>
             
             <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 8px;">
-              <div class="stat-perc" style="color: ${sub.color || 'var(--accent)'}; margin-top: 0;">${perc}%</div>
-              <div style="font-size: 11px;">${targetText}</div>
+              <div class="stat-perc" style="color: ${current_subject_data.subject_color_hex || 'var(--accent)'}; margin-top: 0;">${calculated_attendance_percentage}%</div>
+              <div style="font-size: 10px;">${dynamic_target_text_output}</div>
             </div>
 
           </div>
@@ -787,367 +772,361 @@
       });
     }
 
-    function renderCalendar() {
-      const header = document.getElementById('calendarHeader');
-      const body = document.getElementById('calendarBody');
-      const actualTodayDateStr = formatDate(new Date());
+    function render_weekly_calendar_grid() {
+      const calendar_header_container_element = document.getElementById('calendar_header_container');
+      const calendar_body_container_element = document.getElementById('calendar_body_container');
+      const actual_current_date_string = format_date_to_string_format(new Date());
 
-      const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-      document.getElementById('currentWeekLabel').innerText = `${monthNames[state.currentWeekMonday.getMonth()]} ${state.currentWeekMonday.getFullYear()}`;
+      const month_names_array = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      document.getElementById('current_week_display_label').innerText = `${month_names_array[application_state.start_of_current_week.getMonth()]} ${application_state.start_of_current_week.getFullYear()}`;
 
-      header.innerHTML = `<div class="day-col-header" style="justify-content: center;">Time</div>`;
-      let currentDates = [];
-      for (let i = 0; i < 5; i++) {
-        let d = new Date(state.currentWeekMonday);
-        d.setDate(d.getDate() + i);
-        const dateStr = formatDate(d);
-        currentDates.push(dateStr);
+      calendar_header_container_element.innerHTML = `<div class="day-col-header" style="justify-content: center;">Time</div>`;
+      let current_week_dates_array = [];
+      for (let iteration_index = 0; iteration_index < 5; iteration_index++) {
+        let calculated_date_object = new Date(application_state.start_of_current_week);
+        calculated_date_object.setDate(calculated_date_object.getDate() + iteration_index);
+        const formatted_date_string_value = format_date_to_string_format(calculated_date_object);
+        current_week_dates_array.push(formatted_date_string_value);
 
-        // Check if this specific column is TODAY
-        const isToday = (dateStr === actualTodayDateStr);
-        const todayHeaderClass = isToday ? 'today-header' : '';
-        const todayBadgeHTML = isToday ? `<div class="today-badge">TODAY</div>` : `<div class="today-badge" style="visibility: hidden;">TODAY</div>`;
+        const is_current_day_boolean = (formatted_date_string_value === actual_current_date_string);
+        const dynamic_today_header_class = is_current_day_boolean ? 'today-header' : '';
+        const dynamic_today_badge_html = is_current_day_boolean ? `<div class="today-badge">TODAY</div>` : `<div class="today-badge" style="visibility: hidden;">TODAY</div>`;
 
-        header.innerHTML += `
-          <div class="day-col-header ${todayHeaderClass}">
-            ${todayBadgeHTML}
-            ${DAYS[i]}
-            <span>${d.getDate()} ${monthNames[d.getMonth()].substr(0, 3)}</span>
+        calendar_header_container_element.innerHTML += `
+          <div class="day-col-header ${dynamic_today_header_class}">
+            ${dynamic_today_badge_html}
+            ${WEEK_DAYS_ARRAY[iteration_index]}
+            <span>${calculated_date_object.getDate()} ${month_names_array[calculated_date_object.getMonth()].substr(0, 3)}</span>
             <div class="mark-day-container">
-              <button class="mark-day-btn mark-p-btn" onclick="markDayBulk('${dateStr}', 'P')" title="Mark all classes Present">Present All Day</button>
-              <button class="mark-day-btn mark-a-btn" onclick="markDayBulk('${dateStr}', 'A')" title="Mark all classes Absent">Absent All Day</button>
+              <button class="mark-day-btn mark-p-btn" onclick="mark_full_day_attendance_bulk('${formatted_date_string_value}', 'P')" title="Mark all classes Present">All Present</button>
+              <button class="mark-day-btn mark-a-btn" onclick="mark_full_day_attendance_bulk('${formatted_date_string_value}', 'A')" title="Mark all classes Absent">All Absent</button>
             </div>
           </div>
         `;
       }
 
-      body.innerHTML = '';
-      for (let hour = 8; hour <= 17; hour++) {
-        body.innerHTML += `<div class="time-slot-label" style="grid-row: ${hour - 7}">${hour}:00</div>`;
-        for (let day = 1; day <= 5; day++) {
-          const dateStr = currentDates[day - 1];
-          const isToday = (dateStr === actualTodayDateStr);
-          const cellClass = isToday ? 'grid-cell today-cell' : 'grid-cell';
-          body.innerHTML += `<div class="${cellClass}" style="grid-column: ${day + 1}; grid-row: ${hour - 7}"></div>`;
+      calendar_body_container_element.innerHTML = '';
+      for (let hour_iteration_index = 8; hour_iteration_index <= 17; hour_iteration_index++) {
+        calendar_body_container_element.innerHTML += `<div class="time-slot-label" style="grid-row: ${hour_iteration_index - 7}">${hour_iteration_index}:00</div>`;
+        for (let day_iteration_index = 1; day_iteration_index <= 5; day_iteration_index++) {
+          const corresponding_date_string = current_week_dates_array[day_iteration_index - 1];
+          const is_current_day_boolean_cell = (corresponding_date_string === actual_current_date_string);
+          const dynamic_cell_class_name = is_current_day_boolean_cell ? 'grid-cell today-cell' : 'grid-cell';
+          calendar_body_container_element.innerHTML += `<div class="${dynamic_cell_class_name}" style="grid-column: ${day_iteration_index + 1}; grid-row: ${hour_iteration_index - 7}"></div>`;
         }
       }
 
-      const lecturesToRender = [];
+      const unified_lectures_array_to_render = [];
 
-      state.slots.forEach(slot => {
-        const dayIndex = DAYS.indexOf(slot.day);
-        const dateStr = currentDates[dayIndex];
-        lecturesToRender.push({
-          type: 'slot', id: slot.id, subjectId: slot.subjectId, date: dateStr,
-          dayIndex: dayIndex, startTime: slot.startTime, lectureHours: slot.lectureHours
+      application_state.weekly_schedule_slots.forEach(schedule_slot_item => {
+        const corresponding_day_index_value = WEEK_DAYS_ARRAY.indexOf(schedule_slot_item.day_of_week_name);
+        const corresponding_date_string_value = current_week_dates_array[corresponding_day_index_value];
+        unified_lectures_array_to_render.push({
+          lecture_type_string: 'slot', lecture_identifier: schedule_slot_item.slot_identifier, parent_subject_identifier: schedule_slot_item.parent_subject_identifier, lecture_date_string: corresponding_date_string_value,
+          lecture_day_index: corresponding_day_index_value, lecture_start_hour: schedule_slot_item.start_time_hour_value, lecture_duration_hours: schedule_slot_item.lecture_duration_value
         });
       });
 
-      state.extraClasses.forEach(ec => {
-        const ecDate = new Date(ec.date);
-        ecDate.setHours(0, 0, 0, 0);
-        const diffDays = Math.round((ecDate - state.currentWeekMonday) / (1000 * 60 * 60 * 24));
-        if (diffDays >= 0 && diffDays <= 4) {
-          lecturesToRender.push({
-            type: 'extra', id: ec.id, subjectId: ec.subjectId, date: ec.date,
-            dayIndex: diffDays, startTime: ec.startTime, lectureHours: ec.lectureHours
+      application_state.additional_extra_classes.forEach(extra_class_item => {
+        const parsed_extra_class_date = new Date(extra_class_item.lecture_date_string);
+        parsed_extra_class_date.setHours(0, 0, 0, 0);
+        const calculated_difference_in_days = Math.round((parsed_extra_class_date - application_state.start_of_current_week) / (1000 * 60 * 60 * 24));
+        if (calculated_difference_in_days >= 0 && calculated_difference_in_days <= 4) {
+          unified_lectures_array_to_render.push({
+            lecture_type_string: 'extra', lecture_identifier: extra_class_item.extra_class_identifier, parent_subject_identifier: extra_class_item.parent_subject_identifier, lecture_date_string: extra_class_item.lecture_date_string,
+            lecture_day_index: calculated_difference_in_days, lecture_start_hour: extra_class_item.start_time_hour_value, lecture_duration_hours: extra_class_item.lecture_duration_value
           });
         }
       });
 
-      lecturesToRender.forEach(lec => {
-        const sub = getSubjectById(lec.subjectId);
-        if (!sub) return;
+      unified_lectures_array_to_render.forEach(lecture_data_object => {
+        const parent_subject_data_object = retrieve_subject_object_by_identifier(lecture_data_object.parent_subject_identifier);
+        if (!parent_subject_data_object) return;
 
-        const attId = `att_${lec.subjectId}_${lec.date}_${lec.startTime}`;
-        let attRecord = state.attendance.find(a => a.id === attId);
-        let statuses = attRecord ? attRecord.statuses : new Array(lec.lectureHours).fill(null);
+        const generated_attendance_identifier = `att_${lecture_data_object.parent_subject_identifier}_${lecture_data_object.lecture_date_string}_${lecture_data_object.lecture_start_hour}`;
+        let retrieved_attendance_record = application_state.attendance_records.find(attendance_item => attendance_item.attendance_identifier === generated_attendance_identifier);
+        let active_statuses_array = retrieved_attendance_record ? retrieved_attendance_record.lecture_status_array : new Array(lecture_data_object.lecture_duration_hours).fill(null);
 
-        const s = statuses[0];
-        const pClass = s === 'P' ? 'active-p' : '';
-        const aClass = s === 'A' ? 'active-a' : '';
-        const cClass = s === 'C' ? 'active-c' : '';
+        const primary_status_value = active_statuses_array[0];
+        const dynamic_present_class = primary_status_value === 'P' ? 'active-p' : '';
+        const dynamic_absent_class = primary_status_value === 'A' ? 'active-a' : '';
+        const dynamic_cancelled_class = primary_status_value === 'C' ? 'active-c' : '';
 
-        let attHTML = `
+        let generated_attendance_html_string = `
           <div class="attendance-controls">
             <div class="attendance-row">
-              <button class="att-btn ${pClass}" onclick="markAttBulk('${attId}', '${lec.subjectId}', '${lec.date}', ${lec.startTime}, ${lec.lectureHours}, 'P')">[P]</button>
-              <button class="att-btn ${aClass}" onclick="markAttBulk('${attId}', '${lec.subjectId}', '${lec.date}', ${lec.startTime}, ${lec.lectureHours}, 'A')">[A]</button>
-              <button class="att-btn ${cClass}" onclick="markAttBulk('${attId}', '${lec.subjectId}', '${lec.date}', ${lec.startTime}, ${lec.lectureHours}, 'C')">[C]</button>
+              <button class="att-btn ${dynamic_present_class}" onclick="mark_specific_lecture_attendance_bulk('${generated_attendance_identifier}', '${lecture_data_object.parent_subject_identifier}', '${lecture_data_object.lecture_date_string}', ${lecture_data_object.lecture_start_hour}, ${lecture_data_object.lecture_duration_hours}, 'P')">[P]</button>
+              <button class="att-btn ${dynamic_absent_class}" onclick="mark_specific_lecture_attendance_bulk('${generated_attendance_identifier}', '${lecture_data_object.parent_subject_identifier}', '${lecture_data_object.lecture_date_string}', ${lecture_data_object.lecture_start_hour}, ${lecture_data_object.lecture_duration_hours}, 'A')">[A]</button>
+              <button class="att-btn ${dynamic_cancelled_class}" onclick="mark_specific_lecture_attendance_bulk('${generated_attendance_identifier}', '${lecture_data_object.parent_subject_identifier}', '${lecture_data_object.lecture_date_string}', ${lecture_data_object.lecture_start_hour}, ${lecture_data_object.lecture_duration_hours}, 'C')">[C]</button>
             </div>
           </div>`;
 
-        const card = document.createElement('div');
-        card.className = 'lecture-card';
-        card.style.gridColumn = lec.dayIndex + 2;
-        card.style.gridRow = `${lec.startTime - 7} / span ${lec.lectureHours}`;
-        card.style.borderColor = sub.color || 'var(--accent)';
+        const constructed_lecture_card_element = document.createElement('div');
+        constructed_lecture_card_element.className = 'lecture-card';
+        constructed_lecture_card_element.style.gridColumn = lecture_data_object.lecture_day_index + 2;
+        constructed_lecture_card_element.style.gridRow = `${lecture_data_object.lecture_start_hour - 7} / span ${lecture_data_object.lecture_duration_hours}`;
+        constructed_lecture_card_element.style.borderColor = parent_subject_data_object.subject_color_hex || 'var(--accent)';
 
-        card.innerHTML = `
+        constructed_lecture_card_element.innerHTML = `
           <div class="lecture-info">
-            <strong style="color: ${sub.color || 'var(--accent)'}">${sub.code}</strong>
-            <span>${sub.name}</span>
-            <span style="font-size:10px; color:var(--text-muted); margin-top:2px;">
-              ${lec.startTime}:00 - ${lec.startTime + lec.lectureHours}:00 
-              ${lec.type === 'extra' ? '(Extra)' : ''}
+            <strong style="color: ${parent_subject_data_object.subject_color_hex || 'var(--accent)'}">${parent_subject_data_object.subject_code_text}</strong>
+            <span>${parent_subject_data_object.subject_name_text}</span>
+            <span style="font-size:9px; color:var(--text-muted); margin-top:2px;">
+              ${lecture_data_object.lecture_start_hour}:00 - ${lecture_data_object.lecture_start_hour + lecture_data_object.lecture_duration_hours}:00 
+              ${lecture_data_object.lecture_type_string === 'extra' ? '(Extra)' : ''}
             </span>
           </div>
-          ${attHTML}
-          <button class="icon-btn delete-btn" style="position:absolute; top:4px; right:4px;" onclick="deleteLecture('${lec.type}', '${lec.id}')">✖</button>
+          ${generated_attendance_html_string}
+          <button class="icon-btn delete-btn" style="position:absolute; top:4px; right:4px;" onclick="delete_scheduled_lecture_instance('${lecture_data_object.lecture_type_string}', '${lecture_data_object.lecture_identifier}')">✖</button>
         `;
 
-        body.appendChild(card);
+        calendar_body_container_element.appendChild(constructed_lecture_card_element);
       });
     }
 
-    function scrollToCurrentTime() {
-      const container = document.querySelector('.calendar-container');
-      const hour = new Date().getHours();
+    function scroll_interface_to_current_time_slot() {
+      const scrolling_container_element = document.querySelector('.calendar-container');
+      const current_system_hour_value = new Date().getHours();
 
-      // If it's between 8 AM and 5 PM, scroll to that hour minus a little padding
-      if (hour >= 8 && hour <= 17) {
-        const targetScroll = (hour - 8) * 100 - 40;
-        container.scrollTo({ top: Math.max(0, targetScroll), behavior: 'smooth' });
+      if (current_system_hour_value >= 8 && current_system_hour_value <= 17) {
+        const calculated_target_scroll_position = (current_system_hour_value - 8) * 80 - 30;
+        scrolling_container_element.scrollTo({ top: Math.max(0, calculated_target_scroll_position), behavior: 'smooth' });
       }
     }
 
-    function updateSelectDropdowns() {
-      const slotSub = document.getElementById('slotSubject');
-      const extraSub = document.getElementById('extraSubject');
-      const opts = state.subjects.map(s => `<option value="${s.id}">${s.name} (${s.code})</option>`).join('');
-      slotSub.innerHTML = opts;
-      extraSub.innerHTML = opts;
+    function update_dropdown_selection_options() {
+      const slot_subject_dropdown_element = document.getElementById('slot_subject_selection');
+      const extra_subject_dropdown_element = document.getElementById('extra_subject_selection');
+      const generated_options_html_string = application_state.enrolled_subjects.map(subject_item => `<option value="${subject_item.subject_identifier}">${subject_item.subject_name_text} (${subject_item.subject_code_text})</option>`).join('');
+      slot_subject_dropdown_element.innerHTML = generated_options_html_string;
+      extra_subject_dropdown_element.innerHTML = generated_options_html_string;
     }
 
-    function initColorPicker(selectedColor = COLORS[0]) {
-      const container = document.getElementById('colorPicker');
-      const input = document.getElementById('subColor');
-      container.innerHTML = COLORS.map((c) =>
-        `<div class="color-swatch ${c === selectedColor ? 'selected' : ''}" style="background:${c}" onclick="selectColor(this, '${c}')"></div>`
+    function initialize_color_selection_palette(selected_color_hex_value = THEME_COLORS_ARRAY[0]) {
+      const color_picker_container_element = document.getElementById('color_selection_container');
+      const subject_color_hidden_input_element = document.getElementById('subject_color_input');
+      color_picker_container_element.innerHTML = THEME_COLORS_ARRAY.map((color_hex_code) =>
+        `<div class="color-swatch ${color_hex_code === selected_color_hex_value ? 'selected' : ''}" style="background:${color_hex_code}" onclick="select_subject_color_swatch(this, '${color_hex_code}')"></div>`
       ).join('');
-      input.value = selectedColor;
+      subject_color_hidden_input_element.value = selected_color_hex_value;
     }
 
-    window.selectColor = function (el, color) {
-      document.querySelectorAll('.color-swatch').forEach(sw => sw.classList.remove('selected'));
-      el.classList.add('selected');
-      document.getElementById('subColor').value = color;
+    window.select_subject_color_swatch = function (clicked_element, color_hex_code_value) {
+      document.querySelectorAll('.color-swatch').forEach(swatch_element => swatch_element.classList.remove('selected'));
+      clicked_element.classList.add('selected');
+      document.getElementById('subject_color_input').value = color_hex_code_value;
     };
 
-    window.openAddSubject = function () {
-      editingSubjectId = null;
-      document.getElementById('subjectModalTitle').innerText = 'Add Subject';
-      document.getElementById('subjectForm').reset();
-      initColorPicker(COLORS[0]);
-      openModal('subjectModal');
+    window.open_add_subject_modal = function () {
+      currently_editing_subject_identifier = null;
+      document.getElementById('subject_modal_title_text').innerText = 'Add Subject';
+      document.getElementById('subject_input_form').reset();
+      initialize_color_selection_palette(THEME_COLORS_ARRAY[0]);
+      open_interface_modal('subject_creation_modal');
     };
 
-    window.openEditSubject = function (id) {
-      editingSubjectId = id;
-      const sub = getSubjectById(id);
-      document.getElementById('subjectModalTitle').innerText = 'Edit Subject';
-      document.getElementById('subName').value = sub.name;
-      document.getElementById('subCode').value = sub.code;
-      initColorPicker(sub.color || COLORS[0]);
-      openModal('subjectModal');
+    window.open_edit_subject_modal = function (target_subject_identifier) {
+      currently_editing_subject_identifier = target_subject_identifier;
+      const retrieved_subject_data = retrieve_subject_object_by_identifier(target_subject_identifier);
+      document.getElementById('subject_modal_title_text').innerText = 'Edit Subject';
+      document.getElementById('subject_name_input').value = retrieved_subject_data.subject_name_text;
+      document.getElementById('subject_code_input').value = retrieved_subject_data.subject_code_text;
+      initialize_color_selection_palette(retrieved_subject_data.subject_color_hex || THEME_COLORS_ARRAY[0]);
+      open_interface_modal('subject_creation_modal');
     };
 
-    document.getElementById('subjectForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('subName').value.trim();
-      const code = document.getElementById('subCode').value.trim();
-      const color = document.getElementById('subColor').value;
+    document.getElementById('subject_input_form').addEventListener('submit', (form_submit_event) => {
+      form_submit_event.preventDefault();
+      const entered_subject_name_value = document.getElementById('subject_name_input').value.trim();
+      const entered_subject_code_value = document.getElementById('subject_code_input').value.trim();
+      const selected_subject_color_value = document.getElementById('subject_color_input').value;
 
-      if (editingSubjectId) {
-        if (state.subjects.find(s => s.code === code && s.id !== editingSubjectId)) {
+      if (currently_editing_subject_identifier) {
+        if (application_state.enrolled_subjects.find(subject_item => subject_item.subject_code_text === entered_subject_code_value && subject_item.subject_identifier !== currently_editing_subject_identifier)) {
           alert('Subject code must be unique!');
           return;
         }
-        const sub = getSubjectById(editingSubjectId);
-        sub.name = name;
-        sub.code = code;
-        sub.color = color;
+        const subject_to_update = retrieve_subject_object_by_identifier(currently_editing_subject_identifier);
+        subject_to_update.subject_name_text = entered_subject_name_value;
+        subject_to_update.subject_code_text = entered_subject_code_value;
+        subject_to_update.subject_color_hex = selected_subject_color_value;
       } else {
-        if (state.subjects.find(s => s.code === code)) {
+        if (application_state.enrolled_subjects.find(subject_item => subject_item.subject_code_text === entered_subject_code_value)) {
           alert('Subject code must be unique!');
           return;
         }
-        state.subjects.push({ id: generateId('sub'), name, code, color });
+        application_state.enrolled_subjects.push({ subject_identifier: generate_unique_random_identifier('sub'), subject_name_text: entered_subject_name_value, subject_code_text: entered_subject_code_value, subject_color_hex: selected_subject_color_value });
       }
 
-      saveData();
-      render();
-      closeModals();
+      save_current_application_data();
+      render_entire_application_interface();
+      close_all_interface_modals();
     });
 
-    window.deleteSubject = function (id) {
+    window.delete_selected_subject_data = function (target_subject_identifier) {
       if (!confirm('Delete subject? This will remove all associated slots, extra classes, and attendance.')) return;
-      state.subjects = state.subjects.filter(s => s.id !== id);
-      state.slots = state.slots.filter(s => s.subjectId !== id);
-      state.extraClasses = state.extraClasses.filter(e => e.subjectId !== id);
-      state.attendance = state.attendance.filter(a => a.subjectId !== id);
-      saveData();
-      render();
+      application_state.enrolled_subjects = application_state.enrolled_subjects.filter(subject_item => subject_item.subject_identifier !== target_subject_identifier);
+      application_state.weekly_schedule_slots = application_state.weekly_schedule_slots.filter(slot_item => slot_item.parent_subject_identifier !== target_subject_identifier);
+      application_state.additional_extra_classes = application_state.additional_extra_classes.filter(extra_class_item => extra_class_item.parent_subject_identifier !== target_subject_identifier);
+      application_state.attendance_records = application_state.attendance_records.filter(attendance_item => attendance_item.parent_subject_identifier !== target_subject_identifier);
+      save_current_application_data();
+      render_entire_application_interface();
     };
 
-    document.getElementById('slotForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      state.slots.push({
-        id: generateId('slot'),
-        subjectId: document.getElementById('slotSubject').value,
-        day: document.getElementById('slotDay').value,
-        startTime: parseInt(document.getElementById('slotStart').value),
-        lectureHours: parseInt(document.getElementById('slotDuration').value)
+    document.getElementById('weekly_slot_form').addEventListener('submit', (form_submit_event) => {
+      form_submit_event.preventDefault();
+      application_state.weekly_schedule_slots.push({
+        slot_identifier: generate_unique_random_identifier('slot'),
+        parent_subject_identifier: document.getElementById('slot_subject_selection').value,
+        day_of_week_name: document.getElementById('slot_day_selection').value,
+        start_time_hour_value: parseInt(document.getElementById('slot_start_time_selection').value),
+        lecture_duration_value: parseInt(document.getElementById('slot_duration_selection').value)
       });
-      saveData();
-      render();
-      closeModals();
+      save_current_application_data();
+      render_entire_application_interface();
+      close_all_interface_modals();
     });
 
-    document.getElementById('extraForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      state.extraClasses.push({
-        id: generateId('extra'),
-        subjectId: document.getElementById('extraSubject').value,
-        date: document.getElementById('extraDate').value,
-        startTime: parseInt(document.getElementById('extraStart').value),
-        lectureHours: parseInt(document.getElementById('extraDuration').value)
+    document.getElementById('extra_class_input_form').addEventListener('submit', (form_submit_event) => {
+      form_submit_event.preventDefault();
+      application_state.additional_extra_classes.push({
+        extra_class_identifier: generate_unique_random_identifier('extra'),
+        parent_subject_identifier: document.getElementById('extra_subject_selection').value,
+        lecture_date_string: document.getElementById('extra_date_selection').value,
+        start_time_hour_value: parseInt(document.getElementById('extra_start_time_selection').value),
+        lecture_duration_value: parseInt(document.getElementById('extra_duration_selection').value)
       });
-      saveData();
-      render();
-      closeModals();
+      save_current_application_data();
+      render_entire_application_interface();
+      close_all_interface_modals();
     });
 
-    window.deleteLecture = function (type, id) {
+    window.delete_scheduled_lecture_instance = function (lecture_type_string_value, target_lecture_identifier) {
       if (!confirm('Delete this class? All associated attendance records will be removed.')) return;
 
-      if (type === 'slot') {
-        const slot = state.slots.find(s => s.id === id);
-        if (slot) {
-          state.attendance = state.attendance.filter(a => {
-            if (a.subjectId === slot.subjectId && a.startTime === slot.startTime) {
-              const d = new Date(a.date + 'T00:00:00');
-              const dayName = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][d.getDay()];
-              if (dayName === slot.day) return false;
+      if (lecture_type_string_value === 'slot') {
+        const located_slot_record = application_state.weekly_schedule_slots.find(slot_item => slot_item.slot_identifier === target_lecture_identifier);
+        if (located_slot_record) {
+          application_state.attendance_records = application_state.attendance_records.filter(attendance_item => {
+            if (attendance_item.parent_subject_identifier === located_slot_record.parent_subject_identifier && attendance_item.lecture_start_hour === located_slot_record.start_time_hour_value) {
+              const parsed_attendance_date = new Date(attendance_item.lecture_date_string + 'T00:00:00');
+              const derived_day_name_string = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][parsed_attendance_date.getDay()];
+              if (derived_day_name_string === located_slot_record.day_of_week_name) return false;
             }
             return true;
           });
         }
-        state.slots = state.slots.filter(s => s.id !== id);
+        application_state.weekly_schedule_slots = application_state.weekly_schedule_slots.filter(slot_item => slot_item.slot_identifier !== target_lecture_identifier);
       }
 
-      if (type === 'extra') {
-        const extra = state.extraClasses.find(e => e.id === id);
-        if (extra) {
-          state.attendance = state.attendance.filter(a =>
-            !(a.subjectId === extra.subjectId && a.date === extra.date && a.startTime === extra.startTime)
+      if (lecture_type_string_value === 'extra') {
+        const located_extra_class_record = application_state.additional_extra_classes.find(extra_class_item => extra_class_item.extra_class_identifier === target_lecture_identifier);
+        if (located_extra_class_record) {
+          application_state.attendance_records = application_state.attendance_records.filter(attendance_item =>
+            !(attendance_item.parent_subject_identifier === located_extra_class_record.parent_subject_identifier && attendance_item.lecture_date_string === located_extra_class_record.lecture_date_string && attendance_item.lecture_start_hour === located_extra_class_record.start_time_hour_value)
           );
         }
-        state.extraClasses = state.extraClasses.filter(e => e.id !== id);
+        application_state.additional_extra_classes = application_state.additional_extra_classes.filter(extra_class_item => extra_class_item.extra_class_identifier !== target_lecture_identifier);
       }
 
-      saveData();
-      render();
+      save_current_application_data();
+      render_entire_application_interface();
     };
 
-    window.markAttBulk = function (attId, subjectId, date, startTime, totalHours, status) {
-      let record = state.attendance.find(a => a.id === attId);
+    window.mark_specific_lecture_attendance_bulk = function (target_attendance_identifier, target_subject_identifier, target_date_string, target_start_hour, target_total_hours_duration, applied_status_value) {
+      let located_attendance_record = application_state.attendance_records.find(attendance_item => attendance_item.attendance_identifier === target_attendance_identifier);
 
-      if (!record) {
-        record = {
-          id: attId,
-          subjectId: subjectId,
-          date: date,
-          startTime: startTime,
-          statuses: new Array(totalHours).fill(null)
+      if (!located_attendance_record) {
+        located_attendance_record = {
+          attendance_identifier: target_attendance_identifier,
+          parent_subject_identifier: target_subject_identifier,
+          lecture_date_string: target_date_string,
+          lecture_start_hour: target_start_hour,
+          lecture_status_array: new Array(target_total_hours_duration).fill(null)
         };
-        state.attendance.push(record);
+        application_state.attendance_records.push(located_attendance_record);
       }
 
-      if (record.statuses[0] === status) {
-        record.statuses.fill(null);
+      if (located_attendance_record.lecture_status_array[0] === applied_status_value) {
+        located_attendance_record.lecture_status_array.fill(null);
       } else {
-        record.statuses.fill(status);
+        located_attendance_record.lecture_status_array.fill(applied_status_value);
       }
 
-      saveData();
-      render();
+      save_current_application_data();
+      render_entire_application_interface();
     };
 
-    // Unified function to mark the entire day as P or A
-    window.markDayBulk = function (dateStr, status) {
-      const dayObj = new Date(dateStr + 'T00:00:00');
-      const dayName = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][dayObj.getDay()];
+    window.mark_full_day_attendance_bulk = function (target_date_string, applied_status_value) {
+      const parsed_target_date_object = new Date(target_date_string + 'T00:00:00');
+      const derived_day_name_string = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][parsed_target_date_object.getDay()];
 
-      let lecturesOnDay = [];
+      let compiled_lectures_for_day_array = [];
 
-      // Find slots for this day of the week
-      state.slots.forEach(slot => {
-        if (slot.day === dayName) {
-          lecturesOnDay.push({ subjectId: slot.subjectId, startTime: slot.startTime, hours: slot.lectureHours });
+      application_state.weekly_schedule_slots.forEach(slot_item => {
+        if (slot_item.day_of_week_name === derived_day_name_string) {
+          compiled_lectures_for_day_array.push({ parent_subject_identifier: slot_item.parent_subject_identifier, start_time_hour_value: slot_item.start_time_hour_value, lecture_duration_value: slot_item.lecture_duration_value });
         }
       });
 
-      // Find extra classes specifically on this date
-      state.extraClasses.forEach(ec => {
-        if (ec.date === dateStr) {
-          lecturesOnDay.push({ subjectId: ec.subjectId, startTime: ec.startTime, hours: ec.lectureHours });
+      application_state.additional_extra_classes.forEach(extra_class_item => {
+        if (extra_class_item.lecture_date_string === target_date_string) {
+          compiled_lectures_for_day_array.push({ parent_subject_identifier: extra_class_item.parent_subject_identifier, start_time_hour_value: extra_class_item.start_time_hour_value, lecture_duration_value: extra_class_item.lecture_duration_value });
         }
       });
 
-      if (lecturesOnDay.length === 0) {
+      if (compiled_lectures_for_day_array.length === 0) {
         alert("No classes scheduled for this day.");
         return;
       }
 
-      // Automatically fill or create records with the chosen status
-      lecturesOnDay.forEach(lec => {
-        const attId = `att_${lec.subjectId}_${dateStr}_${lec.startTime}`;
-        let record = state.attendance.find(a => a.id === attId);
+      compiled_lectures_for_day_array.forEach(lecture_data_object => {
+        const generated_attendance_identifier = `att_${lecture_data_object.parent_subject_identifier}_${target_date_string}_${lecture_data_object.start_time_hour_value}`;
+        let located_attendance_record = application_state.attendance_records.find(attendance_item => attendance_item.attendance_identifier === generated_attendance_identifier);
 
-        if (!record) {
-          record = {
-            id: attId,
-            subjectId: lec.subjectId,
-            date: dateStr,
-            startTime: lec.startTime,
-            statuses: new Array(lec.hours).fill(status)
+        if (!located_attendance_record) {
+          located_attendance_record = {
+            attendance_identifier: generated_attendance_identifier,
+            parent_subject_identifier: lecture_data_object.parent_subject_identifier,
+            lecture_date_string: target_date_string,
+            lecture_start_hour: lecture_data_object.start_time_hour_value,
+            lecture_status_array: new Array(lecture_data_object.lecture_duration_value).fill(applied_status_value)
           };
-          state.attendance.push(record);
+          application_state.attendance_records.push(located_attendance_record);
         } else {
-          record.statuses.fill(status);
+          located_attendance_record.lecture_status_array.fill(applied_status_value);
         }
       });
 
-      saveData();
-      render();
+      save_current_application_data();
+      render_entire_application_interface();
     };
 
-    window.changeWeek = function (offset) {
-      state.currentWeekMonday.setDate(state.currentWeekMonday.getDate() + (offset * 7));
-      render();
+    window.navigate_calendar_weeks = function (week_offset_integer_value) {
+      application_state.start_of_current_week.setDate(application_state.start_of_current_week.getDate() + (week_offset_integer_value * 7));
+      render_entire_application_interface();
     };
 
-    window.jumpToCurrentWeek = function () {
-      state.currentWeekMonday = getMonday(new Date());
-      render();
-      setTimeout(scrollToCurrentTime, 100); // Wait for render to finish before scrolling
+    window.navigate_to_current_week = function () {
+      application_state.start_of_current_week = calculate_monday_of_target_week(new Date());
+      render_entire_application_interface();
+      setTimeout(scroll_interface_to_current_time_slot, 100);
     };
 
-    window.openModal = function (id) {
-      document.getElementById(id).classList.add('active');
+    window.open_interface_modal = function (target_modal_identifier_string) {
+      document.getElementById(target_modal_identifier_string).classList.add('active');
     };
 
-    window.closeModals = function () {
-      document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+    window.close_all_interface_modals = function () {
+      document.querySelectorAll('.modal-overlay').forEach(modal_overlay_element => modal_overlay_element.classList.remove('active'));
     };
 
     window.onload = () => {
-      loadData();
-      state.currentWeekMonday = getMonday(new Date());
-      initColorPicker();
-      render();
-      setTimeout(scrollToCurrentTime, 100); // Auto-scroll on initial load
+      load_saved_application_data();
+      application_state.start_of_current_week = calculate_monday_of_target_week(new Date());
+      initialize_color_selection_palette();
+      render_entire_application_interface();
+      setTimeout(scroll_interface_to_current_time_slot, 100);
     };
 
   </script>
