@@ -33,11 +33,16 @@ body {
   width: 280px;
   background-color: var(--bg-sec);
   border-right: 1px solid var(--border);
+
   display: flex;
   flex-direction: column;
+
   padding: 15px;
+  padding-bottom: calc(15px + env(safe-area-inset-bottom));
+
   overflow-y: auto;
-  gap:8px;
+
+  gap: 8px;
 }
 
 .main-area {
