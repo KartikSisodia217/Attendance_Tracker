@@ -37,7 +37,7 @@ body {
 .sidebar {
   width: 280px;
   flex-shrink: 0;
-  /* Ensures width transitions smoothly with flexbox */
+  
   background-color: var(--bg-sec);
   border-right: 1px solid var(--border);
   display: flex;
@@ -631,7 +631,7 @@ body {
   transition: all 0.2s;
 }
 
-/* Mobile Overlay Styles */
+
 .mobile-overlay {
   position: fixed;
   top: 0;
@@ -651,7 +651,7 @@ body {
   visibility: visible;
 }
 
-/* Base styles for the new toggle button */
+
 .desktop-toggle-btn {
   background: var(--bg);
   border: 1px solid var(--border);
@@ -664,7 +664,7 @@ body {
   justify-content: center;
   cursor: pointer;
   margin-left: auto;
-  /* Pushes button to right end of brand */
+ 
   transition: all 0.2s, transform 0.3s;
 }
 
@@ -703,7 +703,7 @@ body {
     display: none;
   }
 
-  /* Hide desktop button on mobile */
+ 
   .desktop-nav-controls {
     display: none !important;
   }
@@ -731,7 +731,7 @@ body {
     display: none !important;
   }
 
-
+  
   .sidebar {
     transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -991,4 +991,95 @@ body {
   100% {
     transform: rotate(360deg);
   }
+}
+
+
+.install-help-btn {
+  margin-top: 10px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 11px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: none;
+}
+
+.install-help-btn:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+
+@media (max-width: 1000px) {
+  .install-help-btn {
+    display: block;
+  }
+}
+
+
+
+.install-help-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.install-help-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.install-help-box {
+  width: 90%;
+  max-width: 320px;
+  background: var(--bg-sec);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+  position: relative;
+}
+
+.install-help-box h3 {
+  margin-bottom: 18px;
+  font-size: 18px;
+  color: var(--accent);
+}
+
+.install-section {
+  margin-bottom: 18px;
+}
+
+.install-section strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.install-section p {
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.install-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 16px;
 }
