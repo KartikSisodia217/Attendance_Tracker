@@ -794,3 +794,82 @@ onAuthStateChanged(auth_service_instance, async (user) => {
 });
 
 window.addEventListener('resize', render_entire_application_interface);
+
+
+// ---------------- SERVICE WORKER ----------------
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', async () => {
+    try {
+      await navigator.serviceWorker.register('/service-worker.js');
+      console.log('Service Worker Registered');
+    } catch (error) {
+      console.error('Service Worker Registration Failed:', error);
+    }
+  });
+}
+
+// ---------------- PWA INSTALL FLOW ----------------
+
+let deferredPrompt = null;
+
+const installButton = document.getElementById('install_app_btn');
+const iosInstallText = document.getElementById('ios_install_text');
+
+if (installButton && iosInstallText) {
+
+  const isMobile = /android|iphone|ipad|ipod/i.test(window.navigator.userAgent);
+  const isIOS = /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+
+  const isInStandaloneMode =
+    window.matchMedia('(display-mode: standalone)').matches ||
+    window.navigator.standalone === true;
+
+  // Hide by default
+  installButton.style.display = 'none';
+  iosInstallText.style.display = 'none';
+
+  // iPhone instructions
+  if (isMobile && isIOS && !isInStandaloneMode) {
+    iosInstallText.style.display = 'block';
+  }
+
+  // Android install flow
+  if (isMobile && !isIOS && !isInStandaloneMode) {
+
+    installButton.style.display = 'flex';
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      
+      deferredPrompt = e;
+    });
+
+    installButton.addEventListener('click', async () => {
+
+      if (!deferredPrompt) {
+
+        alert(
+          'If install popup does not appear:\n\nChrome Menu (⋮) → Add to Home Screen'
+        );
+
+        return;
+      }
+
+      deferredPrompt.prompt();
+
+      const { outcome } = await deferredPrompt.userChoice;
+
+      if (outcome === 'accepted') {
+        installButton.style.display = 'none';
+      }
+
+      deferredPrompt = null;
+    });
+  }
+
+  // Hide after install
+  window.addEventListener('appinstalled', () => {
+    installButton.style.display = 'none';
+    deferredPrompt = null;
+  });
+}
