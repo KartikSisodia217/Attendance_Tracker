@@ -137,7 +137,6 @@ function render_attendance_statistics_cards() {
   application_state.enrolled_subjects.forEach(current_subject_data => {
     let total_present_hours_count = 0; let total_scheduled_hours_count = 0; let total_cancelled_hours_count = 0;
 
-    // Default to 75% if a subject was saved before this update
     const target_val = current_subject_data.target_percentage || 75;
     const target_dec = target_val / 100;
 
@@ -180,10 +179,11 @@ function render_attendance_statistics_cards() {
       }
     }
 
+    /* ✨ ADDED Classes: .subject-name-text and .target-text-output to allow clean hiding when sidebar collapses ✨ */
     statistics_list_container.innerHTML += `
       <div class="stat-card" style="border-left: 4px solid ${current_subject_data.subject_color_hex || 'var(--accent)'}">
         <div class="subject-header" style="align-items: flex-start;">
-          <div style="font-weight:600; color:var(--text); flex: 1; padding-right: 12px; word-break: break-word;">${current_subject_data.subject_name_text}</div>
+          <div class="subject-name-text" style="font-weight:600; color:var(--text); flex: 1; padding-right: 12px; word-break: break-word;">${current_subject_data.subject_name_text}</div>
           <div class="card-actions">
             <span class="subject-code" style="color: ${current_subject_data.subject_color_hex || 'var(--accent)'}; background: ${current_subject_data.subject_color_hex ? current_subject_data.subject_color_hex + '1A' : 'rgba(124, 92, 255, 0.1)'}; margin-left: 0; margin-right: 4px;">${current_subject_data.subject_code_text}</span>
             <button class="icon-btn edit-btn" onclick="open_edit_subject_modal('${current_subject_data.subject_identifier}')" title="Edit Subject">Edit</button>
@@ -195,7 +195,7 @@ function render_attendance_statistics_cards() {
         <div class="stat-row"><span>Target:</span> <span>${target_val}%</span></div>
         <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 8px;">
           <div class="stat-perc" style="color: ${current_subject_data.subject_color_hex || 'var(--accent)'}; margin-top: 0;">${calculated_attendance_percentage}%</div>
-          <div style="font-size: 10px;">${dynamic_target_text_output}</div>
+          <div class="target-text-output" style="font-size: 10px;">${dynamic_target_text_output}</div>
         </div>
       </div>
     `;
@@ -319,7 +319,10 @@ function render_weekly_calendar_grid() {
   });
 }
 
-// ✨ NEW: Updated Toggle Function ✨
+window.toggle_desktop_sidebar = function() {
+  document.querySelector('.sidebar').classList.toggle('collapsed');
+};
+
 window.toggle_mobile_sidebar = function() { 
   document.querySelector('.sidebar').classList.toggle('active'); 
   const overlay = document.getElementById('mobile_sidebar_overlay');
