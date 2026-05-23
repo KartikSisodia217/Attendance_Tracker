@@ -674,21 +674,7 @@ body {
   border-color: var(--text-muted);
 }
 
-@media (max-width: 1000px) {
-  .sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100dvh;
-    transform: translateX(-100%);
-    z-index: 1000;
-    transition: transform 0.3s ease;
-    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5);
-    width: 85%;
-    max-width: 320px;
-    padding-bottom: calc(20px + env(safe-area-inset-bottom));
-    overflow-y: auto;
-  }
+
 
   .sidebar.active {
     transform: translateX(0);
@@ -703,35 +689,10 @@ body {
     display: none;
   }
 
-  /* Hide desktop button on mobile */
+ 
   .desktop-nav-controls {
     display: none !important;
   }
-
-  .toolbar {
-    margin-bottom: 0;
-    padding-bottom: 10px;
-  }
-
-  .calendar-container {
-    border: none;
-    background: var(--bg);
-    border-radius: 0;
-    overflow-x: hidden;
-  }
-
-  #calendar_header_container,
-  #calendar_body_container {
-    display: none !important;
-  }
-}
-
-@media (min-width: 1001px) {
-  .mobile-overlay {
-    display: none !important;
-  }
-
-  /* ✨ NEW: Desktop Collapsed Sidebar Logic ✨ */
   .sidebar {
     transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -750,98 +711,48 @@ body {
     margin-left: 0;
     transform: rotate(180deg);
   }
+  .toolbar {
+    margin-bottom: 0;
+    padding-bottom: 10px;
+  }
 
-  .sidebar.collapsed .brand-text,
-  .sidebar.collapsed .user-welcome,
-  .sidebar.collapsed .btn-text,
-  .sidebar.collapsed .section-title,
-  .sidebar.collapsed .subject-name-text,
-  .sidebar.collapsed .stat-row,
-  .sidebar.collapsed .stat-perc,
-  .sidebar.collapsed .target-text-output,
-  .sidebar.collapsed .edit-btn,
-  .sidebar.collapsed .delete-btn {
+  .calendar-container {
+    border: none;
+    background: var(--bg);
+    border-radius: 0;
+    overflow-x: hidden;
+  }
+
+  #calendar_header_container,
+  #calendar_body_container {
     display: none !important;
   }
 
-  .sidebar.collapsed .btn {
-    padding: 10px 0;
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
+
+@media (max-width: 1000px) {
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100dvh;
+    transform: translateX(-100%);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5);
+    width: 85%;
+    max-width: 320px;
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
+    overflow-y: auto;
   }
 
-  .sidebar.collapsed .stat-card {
-    padding: 10px 4px;
-    display: flex;
-    justify-content: center;
-    border-left-width: 2px !important;
-    width: 100%;
-  }
 
-  .sidebar.collapsed .subject-header {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .sidebar.collapsed .card-actions {
-    justify-content: center;
-    width: 100%;
-  }
-
-  .sidebar.collapsed .subject-code {
-    margin: 0 !important;
-    font-size: 11px;
-  }
-
-  .sidebar.collapsed .user-logout-btn {
-    padding: 14px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-
-  .sidebar.collapsed .logout-icon {
-    margin-right: 0 !important;
+  .time-icon {
+    display: none;
   }
 }
 
-.hidden {
-  display: none !important;
-}
-
-.login-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--bg);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9000;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
-}
-
-.login-box {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px;
-  border-radius: 12px;
-  background-color: var(--bg-sec);
-  border: 1px solid var(--border);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-  max-width: 380px;
-  width: 90%;
-  animation: fadeUp 0.6s ease forwards;
-}
+/* LOGIN */
 
 .login-logo {
   width: 64px;
@@ -904,6 +815,8 @@ body {
   }
 }
 
+/* USER PROFILE */
+
 .user-profile {
   display: flex;
   flex-direction: column;
@@ -946,6 +859,8 @@ body {
   color: var(--text);
   border-color: #3b4252;
 }
+
+/* AUTH LOADING */
 
 .auth-loading-overlay {
   position: fixed;
@@ -990,11 +905,5 @@ body {
 @keyframes spin {
   100% {
     transform: rotate(360deg);
-  }
-}
-
-@media (max-width: 1000px) {
-  .time-icon {
-    display: none;
   }
 }
