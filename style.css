@@ -1083,3 +1083,9 @@ body {
   cursor: pointer;
   font-size: 16px;
 }
+
+@media (display-mode: standalone) {
+  .install-help-btn {
+    display: none !important;
+  }
+}
