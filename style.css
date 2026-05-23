@@ -379,7 +379,26 @@ body {
 .compact-att-btn { padding: 6px 12px; font-size: 11px; font-weight: bold; border-radius: 4px; border: 1px solid var(--border); background: var(--bg-sec); color: var(--text-muted); cursor:pointer; transition: all 0.2s;}
 
 @media (max-width: 1000px) {
-  .sidebar { position: fixed; left: 0; top: 0; height: 100vh; transform: translateX(-100%); z-index: 1000; transition: transform 0.3s ease; box-shadow: 4px 0 15px rgba(0,0,0,0.5); width: 85%; max-width: 320px; }
+  .sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  height: 100dvh;
+
+  transform: translateX(-100%);
+  z-index: 1000;
+  transition: transform 0.3s ease;
+
+  box-shadow: 4px 0 15px rgba(0,0,0,0.5);
+
+  width: 85%;
+  max-width: 320px;
+
+  padding-bottom: calc(20px + env(safe-area-inset-bottom));
+
+  overflow-y: auto;
+}
   .sidebar.active { transform: translateX(0); }
   .mobile-menu-btn, .mobile-close-btn { display: block; }
   .desktop-nav-controls { display: none !important; } 
