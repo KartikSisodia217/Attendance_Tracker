@@ -319,7 +319,15 @@ function render_weekly_calendar_grid() {
   });
 }
 
-window.toggle_mobile_sidebar = function() { document.querySelector('.sidebar').classList.toggle('active'); };
+// ✨ NEW: Updated Toggle Function ✨
+window.toggle_mobile_sidebar = function() { 
+  document.querySelector('.sidebar').classList.toggle('active'); 
+  const overlay = document.getElementById('mobile_sidebar_overlay');
+  if (overlay) {
+    overlay.classList.toggle('active');
+  }
+};
+
 window.navigate_mobile_day = function(day_offset_integer_value) {
   application_state.current_mobile_date_object.setDate(application_state.current_mobile_date_object.getDate() + day_offset_integer_value);
   render_entire_application_interface();
@@ -559,7 +567,6 @@ window.open_add_subject_modal = function () {
   document.getElementById('subject_modal_title_text').innerText = 'Add Subject';
   document.getElementById('subject_input_form').reset();
   
-  // NEW: Reset target input default to 75
   const target_input = document.getElementById('subject_target_input');
   if(target_input) target_input.value = 75;
 
@@ -574,7 +581,6 @@ window.open_edit_subject_modal = function (target_subject_identifier) {
   document.getElementById('subject_name_input').value = retrieved_subject_data.subject_name_text;
   document.getElementById('subject_code_input').value = retrieved_subject_data.subject_code_text;
   
-  // NEW: Load existing target percentage or default to 75
   const target_input = document.getElementById('subject_target_input');
   if(target_input) target_input.value = retrieved_subject_data.target_percentage || 75;
 
@@ -588,7 +594,6 @@ document.getElementById('subject_input_form').addEventListener('submit', (form_s
   const entered_subject_code_value = document.getElementById('subject_code_input').value.trim();
   const selected_subject_color_value = document.getElementById('subject_color_input').value;
   
-  // NEW: Read the inputted target percentage
   const entered_target_percentage = parseInt(document.getElementById('subject_target_input').value) || 75;
 
   if (currently_editing_subject_identifier) {

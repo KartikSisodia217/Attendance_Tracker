@@ -27,6 +27,10 @@
   </div>
 
   <div id="main_app" class="app-container hidden">
+    
+    <!-- ✨ NEW: Mobile Overlay Added Here ✨ -->
+    <div id="mobile_sidebar_overlay" class="mobile-overlay" onclick="toggle_mobile_sidebar()"></div>
+
     <aside class="sidebar">
       <div class="brand">
         Attendance Tracker
@@ -54,8 +58,6 @@
             <button class="nav-btn" onclick="navigate_to_current_week()">Today</button>
             <button class="nav-btn" onclick="navigate_calendar_weeks(1)">Next ▶</button>
             <h2 id="current_week_display_label">May 2026</h2>
-            
-            
           </div>
         </div>
         <div style="display: flex; gap: 8px;">
