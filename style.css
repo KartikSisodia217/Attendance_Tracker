@@ -676,57 +676,7 @@ body {
 
 
 
-  .sidebar.active {
-    transform: translateX(0);
-  }
-
-  .mobile-menu-btn,
-  .mobile-close-btn {
-    display: block;
-  }
-
-  .desktop-toggle-btn {
-    display: none;
-  }
-
  
-  .desktop-nav-controls {
-    display: none !important;
-  }
-  .sidebar {
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .sidebar.collapsed {
-    width: 76px;
-    align-items: center;
-  }
-
-  .sidebar.collapsed .brand {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .sidebar.collapsed .desktop-toggle-btn {
-    margin-left: 0;
-    transform: rotate(180deg);
-  }
-  .toolbar {
-    margin-bottom: 0;
-    padding-bottom: 10px;
-  }
-
-  .calendar-container {
-    border: none;
-    background: var(--bg);
-    border-radius: 0;
-    overflow-x: hidden;
-  }
-
-  #calendar_header_container,
-  #calendar_body_container {
-    display: none !important;
-  }
 
 
 @media (max-width: 1000px) {
@@ -745,6 +695,7 @@ body {
     padding-bottom: calc(20px + env(safe-area-inset-bottom));
     overflow-y: auto;
   }
+
 
 
   .time-icon {
