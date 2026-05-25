@@ -509,10 +509,10 @@ window.handleDateChange = function (selectedDateString) {
   const [year, month, day] = selectedDateString.split('-').map(Number);
   const selectedDate = new Date(year, month - 1, day);
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  const currDate = new Date(application_state.current_mobile_date_object);
+  currDate.setHours(0, 0, 0, 0);
 
-  const diffTime = selectedDate - today;
+  const diffTime = selectedDate - currDate;
 
   // 1 day = 24*60*60*1000 = 86400000 ms
   const offset = Math.round(diffTime / 86400000);
@@ -609,6 +609,7 @@ function render_mobile_day_view(mobile_container) {
           <input 
             type="date" 
             onchange="handleDateChange(this.value)"
+            value="application_state.current_mobile_date_object"
             onclick="this.showPicker()" 
             style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;" 
           />
