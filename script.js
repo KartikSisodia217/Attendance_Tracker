@@ -667,7 +667,7 @@ function render_mobile_day_view(mobile_container) {
               <strong style="color: ${parent_subject_data_object.subject_color_hex || 'var(--accent)'}; font-size: 15px;">${parent_subject_data_object.subject_code_text}</strong>
               <span style="font-size: 14px; margin-top: 2px;">${parent_subject_data_object.subject_name_text}</span>
               <span style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">
-                🕒 ${lecture_data_object.start_time_hour_value}:00 - ${lecture_data_object.start_time_hour_value + lecture_data_object.lecture_duration_value}:00
+                ${lecture_data_object.start_time_hour_value}:00 - ${lecture_data_object.start_time_hour_value + lecture_data_object.lecture_duration_value}:00
                 ${lecture_data_object.lecture_type_string === 'extra' ? '<span style="color: var(--accent); margin-left: 4px;">(Extra Class)</span>' : ''}
               </span>
             </div>
