@@ -4,8 +4,10 @@ import {
   firestore_database_instance,
 } from './firebase-config.js';
 import {
+  browserLocalPersistence,
   signInWithPopup,
   onAuthStateChanged,
+  setPersistence,
   signOut,
 } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
 import {
@@ -109,6 +111,7 @@ window.handle_auth_click = async function () {
     loading_text.innerText = 'Signing in...';
     loading_overlay.classList.add('active');
     try {
+      await setPersistence(auth_service_instance, browserLocalPersistence);
       await signInWithPopup(auth_service_instance, google_auth_provider);
     } catch (e) {
       console.error(e);
@@ -817,7 +820,7 @@ function render_mobile_week_view(mobile_container) {
           <div class="compact-lecture-card" style="border-left-color: ${parent_subject_data.subject_color_hex || 'var(--accent)'}">
             <div class="compact-lecture-info">
               <strong style="color: ${parent_subject_data.subject_color_hex || 'var(--accent)'}; font-size: 13px;">${parent_subject_data.subject_code_text}</strong>
-              <span style="font-size: 11px; color: var(--text-muted); margin-top: 3px;"> ${lecture_data.start_time_hour_value}:00 - ${lecture_data.start_time_hour_value + lecture_data.lecture_duration_value}:00</span>
+              <span style="font-size: 11px; color: var(--text-muted); margin-top: 3px;">🕒 ${lecture_data.start_time_hour_value}:00 - ${lecture_data.start_time_hour_value + lecture_data.lecture_duration_value}:00</span>
             </div>
             <div class="compact-att-controls">
               <button class="compact-att-btn ${p_class}" style="${p_class ? 'background:var(--present); color:#000; border-color:var(--present);' : ''}" onclick="mark_specific_lecture_attendance_bulk('${att_identifier}', '${lecture_data.parent_subject_identifier}', '${loop_date_string}', ${lecture_data.start_time_hour_value}, ${lecture_data.lecture_duration_value}, 'P')">P</button>
